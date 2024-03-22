@@ -1,0 +1,15 @@
+.css-q0jhri-MuiInputBase-root-MuiInput-root:before {
+    border-bottom: 1px solid #E4F0FF !important;
+}
+.css-q0jhri-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 1px solid #E4F0FF !important;
+}
+.searchTextField{
+    color:#E4F0FF !important;
+    margin-inline-start: 15px !important;
+    
+}
+.css-1x51dt5-MuiInputBase-input-MuiInput-input.Mui-disabled{
+    -webkit-text-fill-color: white !important
+}
+

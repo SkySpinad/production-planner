@@ -1,0 +1,48 @@
+.default{
+    width:100%;
+    color:#133c70;
+    justify-content:flex-start;
+  
+}
+.default:hover{
+    color:#133c70
+}
+.default:focus{
+    box-shadow:0 0 0px white
+}
+.alert {
+    width:100%;
+    color:red;
+    justify-content:flex-start;
+  
+}
+.alert:hover{
+    color:red
+}
+.alert:focus{
+    box-shadow:0 0 0px white
+}
+.red {
+    width:100%;
+    color:red;
+    justify-content:flex-start;
+  
+}
+.red:hover{
+    color:red
+}
+.red:focus{
+    box-shadow:0 0 0px white
+}
+.green{
+    width:100%;
+    color:green;
+    justify-content:flex-start;
+  
+}
+.green:hover{
+    color:green
+}
+.green:focus{
+    box-shadow:0 0 0px white
+}

@@ -1,0 +1,16 @@
+node_modules
+
+dist
+build
+build/66.bundle.js
+build/294.bundle.js
+build/558.bundle.js
+build/593.bundle.js
+build/751.bundle.js
+build/818.bundle.js
+build/935.bundle.js
+build/950.bundle.js
+build/bundle.js
+build/eventscam.js
+build/index.html
+.npmrc
