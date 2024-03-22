@@ -1,7 +1,6 @@
 
 import { Parser } from '@json2csv/plainjs';
-import { global, territoryList } from '../common/lang';
-import { log } from 'console';
+import { global } from '../common/lang';
 import { statusColor } from '../common/layout';
 
 export const prebuffer = process.env.PREBUFFER;
@@ -39,41 +38,16 @@ export function downloadCsv(items, fileTitle) {
     }
   }
 
-
-  export function downloadJson(items, fileTitle){
-    var url = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items));
-    var link = document.createElement('a');
-    link.setAttribute("href", url);
-    link.setAttribute("download", fileTitle + ".json");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }
-
-export function getRandomCountry(){
-    var how_many = Math.floor(Math.random()*territoryList.length) +1
-    var  i = 0
-    log(how_many)
-    var country = []
-    while (i<how_many){
-        var tmp = territoryList[Math.floor(Math.random()*territoryList.length)];
-        country.push(tmp)
-        i++
-    }
-    log([...new Set(country)])
-    return [...new Set(country)]
+export function downloadJson(items, fileTitle){
+  var url = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items));
+  var link = document.createElement('a');
+  link.setAttribute("href", url);
+  link.setAttribute("download", fileTitle + ".json");
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 }
 
-
-export function getCountries(){
-    var  i = 0
-    var country = []
-    while (i<territoryList.length){
-        country.push(territoryList[i].value)
-        i++
-    }
-    return [...new Set(country)]
-}
 
 export function getColorStatusEvent(startDate, endDate) {
        const now =new Date().valueOf();
@@ -96,64 +70,6 @@ export function getColorStatusEvent(startDate, endDate) {
    }
 }
 
-
-export function getEcnodersItemsFormatted(filterList) {
-  const list = []
-  filterList.map(el=> {
-    list.push({
-      "eventId":el.eventId,
-      "scheduledEnd":el.scheduledEnd,
-      "scheduledStart":el.scheduledStart,
-      "proposition":el.proposition,
-      "label":el.label,
-      "status":el.status,
-      "details":el.details,
-      "key":el.key,
-      "name":el.name,
-      "serviceKey":el.serviceKey,
-      "tag Label":el.tags ?JSON.parse(el.tags).Label : "-",
-      "tag Name":el.tags ? JSON.parse(el.tags).Name : "-",
-    })
-  })
-  return list
-}
-
-export function getEventItemsDateFormatted(filterList) {
-  const list = []
-  filterList.map(el=> {
-    list.push({
-      "__typename":el.__typename,
-      "key":el.key,
-      "created_by":el.created_by,
-      "startDateUTC":el.date,
-      "startDateLocalTZ":DateToStringFormat(el.date),
-      "endDateUTC":el.dateEnd,
-      "endDateLocalTZ":DateToStringFormat(el.dateEnd),
-      "name":el.name,
-      "sport":el.sport,
-      "proposition":el.proposition,
-    })
-  })
-  return list
-}
-
-export function downloadWorkOrderItems(filterList, title) {
-  const list = []
-  filterList.map(el=> {
-    var eventData = JSON.parse(el.eventData)
-    list.push({
-      "Event Group Name" :eventData.eventGroupName,
-      "Event Region":eventData.eventRegion,
-      "Start Date Time":DateToStringFormat(eventData.startDateTime),
-      "End Date Time":DateToStringFormat(eventData.endDateTime),
-      "Gender":eventData.eventAttributes.gender,
-      "Court ID":eventData.eventAttributes.courtId,
-      "Court Name":eventData.eventAttributes.courtName,
-      "Type":eventData.eventAttributes.type
-    })
-  })
-  return downloadCsv(list, title);
-}
 
 export function checkFieldIsempty(e) {
   switch (e) {

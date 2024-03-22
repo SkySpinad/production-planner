@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { color, rainbowTheme } from "../../../common/layout";
 import { Application, Button, Modal } from "react-rainbow-components";
-import { encoderLang } from "../../../common/lang";
+import { productionPlannerLang } from "../../../common/lang";
 import { ACTION_PERMISSIONS, isPermissionDenied } from "../../../common/user";
 
 export default function BasicDialog({ footer, title, children, isOpen, handleClose,handleConfirm,confirmLabel }) {
@@ -26,7 +26,7 @@ export default function BasicDialog({ footer, title, children, isOpen, handleClo
     <Button
         form="redux-form-id"
         className="rainbow-m-right_large"
-        label={confirmLabel?confirmLabel:encoderLang.dialog.defaultConfirmButton}
+        label={confirmLabel?confirmLabel:productionPlannerLang.dialog.defaultConfirmButton}
         variant="brand"
         type="submit"
         disabled = {isPermissionDenied(ACTION_PERMISSIONS.BasicDialogActionExecutor)}
