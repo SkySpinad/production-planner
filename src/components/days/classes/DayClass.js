@@ -1,4 +1,4 @@
-export class CourtClass {
+export class DayClass {
 
     country
     eventGroupId
@@ -21,12 +21,12 @@ export var FieldType = {
     MultiSelect : 'multiSelect',
   }
 
-export var encoderConfig= {
+export var dayConfig= {
     country: { title: 'Country', type: FieldType.Text, span: 2, display: true },
     eventGroupId: { title: 'Event Group Id', type: FieldType.Text, span: 2, display: true },
     feedId: { title: 'Feed', type: FieldType.Text, span: 2, display: true }
 };
 
-export const encoderField = Object.entries(encoderConfig).filter(
+export const dayField = Object.entries(dayConfig).filter(
     ([_, config]) => config.display,
 );  

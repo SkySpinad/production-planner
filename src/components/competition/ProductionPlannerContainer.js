@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import InnerAppBar from "../../innerbar/InnerAppBar";
-import { vcrLang } from "../../../common/lang";
-import { layout, styleAvatar } from "../../../common/layout";
-import { DateToStringFormat, downloadVcrItems } from "../../../utils/utils";
+import InnerAppBar from "../innerbar/InnerAppBar";
+import { productionPlannerLang } from "../../common/lang";
+import { layout, styleAvatar } from "../../common/layout";
+import { downloadCsv } from "../../utils/utils";
 import { Pagination } from "react-rainbow-components";
-import CustomAlert from "../../alert/CustomAlert";
-import VerticalCentered from "../../layout/VerticalCentered";
-import { ACTION_PERMISSIONS, isPermissionDenied } from "../../../common/user";
-import getSportIcon from "../../../utils/Sport";
-import ReadOnlyBanner from "../../banner/ReadOnlyBanner";
-import VcrToolBarMenu from "../VcrToolBarMenu";
-import VcrStartHeader from "../VcrStartHeader";
-import VcrItem_v2 from "./VcrItem_v2";
-import VcrHeader_v2 from "./VcrHeader_v2";
-import Loader from '../../Loader/Loader';
+import CustomAlert from "../alert/CustomAlert";
+import VerticalCentered from "../layout/VerticalCentered";
+import { ACTION_PERMISSIONS, isPermissionDenied } from "../../common/user";
+import getSportIcon from "../../utils/Sport";
+import ReadOnlyBanner from "../banner/ReadOnlyBanner";
+import Loader from '../Loader/Loader';
 import { useSelector, useDispatch } from 'react-redux';
+import CompetitionItem from "./CompetitionItem";
+import CompetitionHeader from "./CompetitionHeader";
+import ProductionPlannerStartHeader from "./ProductionPlannerStartHeader";
+import ProductionPlannerToolBarMenu from "./ProductionPlannerToolBarMenu";
 
-export default function VcrContainer_v2() {
+export default function ProductionPlannerContainer() {
   
-  const [open, setOpen] = useState(false);
   const [listCompetition, setListCompetition] = useState([]);
   const [filterList, setfilterList] = useState([]);
   const [value, setValue] = useState("");
@@ -29,8 +28,6 @@ export default function VcrContainer_v2() {
   const [expandedEvent, setExpandedEvent] = useState(null);
 
   const competitionList = useSelector((state) => state.competitions.data);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (competitionList) {
@@ -46,17 +43,17 @@ export default function VcrContainer_v2() {
   
   useEffect(() => {
     if (value) {
-      setfilterList(getVcrFilter(value));
+      setfilterList(getCompetitionFilter(value));
     } else {
       setfilterList(listCompetition);
     }
   }, [value]);
 
   
-  function getVcrFilter(value) {
-    return listCompetition.filter((vcr) => 
-    vcr.id.toUpperCase().includes(value.toUpperCase()) ||
-    vcr.name.toUpperCase().includes(value.toUpperCase()))
+  function getCompetitionFilter(value) {
+    return listCompetition.filter((comp) => 
+    comp.id.toUpperCase().includes(value.toUpperCase()) ||
+    comp.name.toUpperCase().includes(value.toUpperCase()))
   }
 
   function handleShowDetailsEventItem(id) {
@@ -68,7 +65,7 @@ export default function VcrContainer_v2() {
   }
 
   function handleCsv() {
-    downloadVcrItems(filterList, "competitions")
+    downloadCsv(filterList, "competitions")
   }
 
   function setValueSearchBar(valSearch) {
@@ -84,13 +81,13 @@ export default function VcrContainer_v2() {
     <InnerAppBar
       title={"Production Planner"}
       headerStartComponent={
-        <VcrStartHeader
+        <ProductionPlannerStartHeader
           currentText={value}
           onChangeText={setValueSearchBar}
         />
       }
       sidebar={<></>}
-      menu={<VcrToolBarMenu handleDownloadCsv={handleCsv} />
+      menu={<ProductionPlannerToolBarMenu handleDownloadCsv={handleCsv} />
       }
     >
       {
@@ -108,13 +105,13 @@ export default function VcrContainer_v2() {
       <Box flex={2} p={2} style={layout.boxRightContainer}>
         {(filterList.length > 0 &&
           filterList.slice(sliceStart, sliceEnd).map((element, index) => (
-            <VcrItem_v2 key={"ev" + index} element={element} showDetailsEventItem={expandedEvent == element.id}>
-              <VcrHeader_v2
+            <CompetitionItem key={"ev" + index} element={element} showDetailsEventItem={expandedEvent == element.id}>
+              <CompetitionHeader
                   data={element}
                   icon={getSportIcon(element.sport, styleAvatar)}
                   handleShowDetailsEventItem={handleShowDetailsEventItem}
               />
-            </VcrItem_v2>
+            </CompetitionItem>
           ))
         ) || (
             <VerticalCentered>
@@ -122,10 +119,10 @@ export default function VcrContainer_v2() {
                 <>
                   <CustomAlert
                     color="warning"
-                    text={vcrLang.alert.noVCRFilter}
+                    text={productionPlannerLang.alert.noVCRFilter}
                   />
                   {isSearching && (
-                    <CustomAlert color="info" text={vcrLang.alert.noRefresh} />
+                    <CustomAlert color="info" text={productionPlannerLang.alert.noRefresh} />
                   )}
                 </>
               )}

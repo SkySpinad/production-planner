@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import days_mock from '../../mock/productionPlanner/competitions.json'
+import days_mock from '../../mock/productionPlanner/days.json'
 
 const initialState = { data: days_mock.data };
 

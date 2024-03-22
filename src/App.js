@@ -1,15 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CompetitionPage from "./pages/CompetitionPage";
-import VcrPage_v2 from "./pages/VcrPage_v2";
+import ProductionPlannerPage from "./pages/ProductionPlannerPage";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-        <Route index path="/productionPlanner" element={<CompetitionPage/>}/>
-        <Route index path="/vcr_v2" element={<VcrPage_v2/>}/>
+        <Route index path="/productionPlanner" element={<ProductionPlannerPage/>}/>
         </Routes>
       </Router>
     </>

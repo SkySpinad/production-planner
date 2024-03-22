@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import { getColorStatusEvent, getColorStatusEventUnconfirmed } from "../../utils/utils";
 import { ListItemText } from "@mui/material";
-import VcrCourtList from "./VcrCourtList";
+import { useSelector, useDispatch } from 'react-redux';
+import DaysList from "../days/DaysList";
 
-export default function VcrItem({ element, children, showDetailsEventItem }) {
+export default function CompetitionItem({ element, children, showDetailsEventItem }) {
+
+  const daysList = useSelector((state) => state.days.data);
 
   useEffect(() => {
   }, [showDetailsEventItem])
@@ -21,8 +24,12 @@ export default function VcrItem({ element, children, showDetailsEventItem }) {
         </Box>
       }
       secondary={showDetailsEventItem &&
-        <VcrCourtList element={element} visible={showDetailsEventItem} />
-      }
+        <DaysList 
+          visible={showDetailsEventItem} 
+          data={daysList}
+          isOnlyRead={true}
+        />
+     }
       sx={{
         my: 1,
         border: "1px solid",

@@ -23,7 +23,7 @@ module.exports = env => {
       name: "productionPlanner",
       filename: "productionplanner.js",
       exposes: {
-        "./CompetitionPage": "./src/pages/CompetitionPage"
+        "./ProductionPlannerPage": "./src/pages/ProductionPlannerPage"
       },
       shared: {
         ...deps,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ApolloProvider } from "@apollo/client";
 import { MyApolloClient } from "../services/apollo";
 import { SnackbarProvider } from "notistack";
@@ -8,12 +8,13 @@ import { setUser } from "../common/user";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "../theme";
 import { mocked_user } from "../mock/mocked_data";
+import store from "../store/store";
 import { Provider } from 'react-redux';
-import store from '../store/store'
-import CompetitionContainer from "../container/CompetitionContainer";
+import ProductionPlannerContainer from "../components/competition/ProductionPlannerContainer";
+
 const apollo = MyApolloClient();
 
-export default function CompetitionPage({ user }) {
+export default function ProductionPlannerPage({ user }) {
   if (user) {
     setUser(user);
   }
@@ -23,7 +24,7 @@ export default function CompetitionPage({ user }) {
   }
   return (
     <div>
-    <Provider store={store}>
+      <Provider store={store}>
         <Application theme={rainbowTheme}>
           <ThemeProvider theme={theme}>
             <ApolloProvider client={apollo}>
@@ -34,12 +35,12 @@ export default function CompetitionPage({ user }) {
                   horizontal: "right",
                 }}
               >
-                <CompetitionContainer/>
+                <ProductionPlannerContainer />
               </SnackbarProvider>
             </ApolloProvider>
           </ThemeProvider>
-        </Application>  
-    </Provider>
+        </Application>
+        </Provider>
     </div>
   );
 }

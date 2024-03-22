@@ -3,7 +3,7 @@ import InputText from "../text/InputText";
 import HorizontalCentered from "../layout/HorizontalCentered";
 import { placeholderInputFilter } from "../../common/lang";
 
-export default function VcrStartHeader({ handleDrawerOpen, onChangeText, currentText }) {
+export default function ProductionPlannerStartHeader({ handleDrawerOpen, onChangeText, currentText }) {
 
     useEffect(() => {
     }, [handleDrawerOpen, onChangeText, currentText])

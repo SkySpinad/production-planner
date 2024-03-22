@@ -8,7 +8,7 @@ import { Button, ButtonGroup, ButtonMenu, MenuItem} from "react-rainbow-componen
 import { ACTION_PERMISSIONS, isPermissionDenied } from "../../../common/user";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import VcrCourtList_v2 from "../../vcr/v2/VcrCourtList_v2";
+import VcrCourtList_v2 from "../../vcr/v2/DaysList";
 import { Alert } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import { FILL_WORKORDER } from "../../../api/graphql/mutationWorkOrder";

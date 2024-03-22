@@ -155,19 +155,6 @@ export function downloadWorkOrderItems(filterList, title) {
   return downloadCsv(list, title);
 }
 
-export function downloadVcrItems(filterList, title) {
-  const list = []
-  filterList.map(el=> {
-    list.push({
-      "Competition Name" :el.competitionName,
-      "Start Date Time":DateToStringFormat(el.startDateTime),
-      "End Date Time":DateToStringFormat(el.endDateTime),
-      "Lucid Id": checkFieldIsempty(JSON.parse(el.lucidId)) ? null : JSON.parse(el.lucidId).description
-    })
-  })
-  return downloadCsv(list, title);
-}
-
 export function checkFieldIsempty(e) {
   switch (e) {
     case "":

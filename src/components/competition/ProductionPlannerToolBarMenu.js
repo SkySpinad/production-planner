@@ -5,9 +5,9 @@ import SingleMenuItem2 from "../list/v2/SingleMenuItem";
 import MenuItemCustom from "../menu/MenuItem";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import SingleMenu from "../menu/v2/SingleMenu";
-import { vcrLang } from "../../common/lang";
+import { productionPlannerLang } from "../../common/lang";
 
-export default function VcrToolBarMenu({ handleDownloadCsv }) {
+export default function ProductionPlannerToolBarMenu({ handleDownloadCsv }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClose = () => {
@@ -26,7 +26,7 @@ export default function VcrToolBarMenu({ handleDownloadCsv }) {
       handleCloseHorizIcon={handleClose}
     >
       <SingleMenuItem2>
-          <MenuItemCustom handleClick={handleDownloadCsv} icon={faDownload} text={vcrLang.appbar.menu.download}/>
+          <MenuItemCustom handleClick={handleDownloadCsv} icon={faDownload} text={productionPlannerLang.appbar.menu.download}/>
       </SingleMenuItem2>
      
     </SingleMenu>
