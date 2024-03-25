@@ -100,6 +100,93 @@ export const layout = {
     justifyContent:'flex-start',}
 }
 
+export const encoderStatus = {
+    20: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    21: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    10: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    Started: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    Delete: {
+        name: "Delete",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Delete'
+    },
+    Stopped: {
+        name: "Stop",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+    80: {
+        name: "Stop",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+    90: {
+        name: "Stop",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+    500: {
+        name: "Stop",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+     Waiting: {
+        name: "Waiting",
+        color: statusColor.lightGreen,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    0: {
+        name: "Waiting",
+        color: statusColor.lightGreen,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    3: {
+        name: "Waiting",
+        color: statusColor.lightGreen,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    5: {
+        name: "Waiting",
+        color: statusColor.lightGreen,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    Undefined: {
+        name: "Undefined",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Undefined'
+    }
+}
+
 
 
 

@@ -46,13 +46,13 @@ function statusTemplate(encoder){
 */
 
 export var competitionConfig= {
-    areaId: { title: 'naareaIdme', type: FieldType.Text, span: 2, display: true },
-    areaName: { title: 'areaName', type: FieldType.Text, span: 2, display: true },
+    areaId: { title: 'areaId', type: FieldType.Text, span: 2, display: false },
+    areaName: { title: 'Area Name', type: FieldType.Text, span: 2, display: true },
     follow: { title: 'follow', type: FieldType.Text, span: 2, display: false },
-    year: { title: 'year', type: FieldType.Text, display: true },
-    lastUpdated: { title: 'lastUpdated', type: FieldType.Text, minWidth: 180, display: true, template:dateTemplate },
-    startDate: { title: 'startDate', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
-    endDate: { title: 'endDate', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
+    year: { title: 'Year', type: FieldType.Text, display: true },
+    lastUpdated: { title: 'lastUpdated', type: FieldType.Text, minWidth: 180, display: false, template:dateTemplate },
+    startDate: { title: 'Start Date', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
+    endDate: { title: 'End Date', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
 };
 
 export const competitionField = Object.entries(competitionConfig).filter(

@@ -3,7 +3,8 @@ import { Typography, Stack } from '@mui/material';
 import { useEffect } from "react";
 import { CompetitionClass, competitionField } from "./classes/CompetitionClass";
 import MetadataTable from "../MetadataTable/MetadataTable";
-import PropType from "prop-types"
+import PropType from "prop-types";
+import CustomStatusItem from "../../components/list/v2/CustomStatusItem";
 
 export default function CompetitionHeader({ data, icon, handleShowDetailsEventItem }) {
 
@@ -46,7 +47,9 @@ export default function CompetitionHeader({ data, icon, handleShowDetailsEventIt
                     </Typography>
                 </Stack>
                 <MetadataTable fields={competitionField} metadata={data}  />
-
+                <CustomStatusItem encoder={data} />
+                <CustomStatusItem encoder={data} />
+                <CustomStatusItem encoder={data} />
                 
             </Stack>
         </>
