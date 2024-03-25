@@ -312,5 +312,13 @@ export const KAFKA_MESSAGE =  gql`
     }
 `;
 
+export const GET_COURTS_BY_COMPETITION_ID =  gql`
+    mutation GetCourtsByCompetitionId($input: Api!) {
+        api(input: $input) {
+            response
+        }
+    }
+`;
+
 
 

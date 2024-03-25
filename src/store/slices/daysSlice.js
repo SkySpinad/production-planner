@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import days_mock from '../../mock/productionPlanner/days.json'
 
-const initialState = { data: days_mock.data };
+const initialState = {
+  data: []
+};
 
 const daysSlice = createSlice({
   name: 'days',
   initialState,
   reducers: {
-    
-  },
+    initializeDays: (state, action) => {
+      state.data = action.payload;
+    },
+  }
 });
 
-export const { addCompetition, deleteCompetition } = daysSlice.actions;
-
+export const { initializeDays } = daysSlice.actions;
 export default daysSlice.reducer;

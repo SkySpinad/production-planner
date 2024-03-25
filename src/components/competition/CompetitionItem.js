@@ -2,16 +2,12 @@ import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import { getColorStatusEvent, getColorStatusEventUnconfirmed } from "../../utils/utils";
 import { ListItemText } from "@mui/material";
-import { useSelector, useDispatch } from 'react-redux';
 import DaysList from "../days/DaysList";
 
 export default function CompetitionItem({ element, children, showDetailsEventItem }) {
 
-  const daysList = useSelector((state) => state.days.data);
-
   useEffect(() => {
   }, [showDetailsEventItem])
-
 
   var color = element.status ? getColorStatusEventUnconfirmed(element.status) : getColorStatusEvent(element.date, element.dateEnd)
   return (
@@ -26,8 +22,8 @@ export default function CompetitionItem({ element, children, showDetailsEventIte
       secondary={showDetailsEventItem &&
         <DaysList 
           visible={showDetailsEventItem} 
-          data={daysList}
           isOnlyRead={true}
+          element={element}
         />
      }
       sx={{

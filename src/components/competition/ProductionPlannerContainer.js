@@ -11,14 +11,15 @@ import { ACTION_PERMISSIONS, isPermissionDenied } from "../../common/user";
 import getSportIcon from "../../utils/Sport";
 import ReadOnlyBanner from "../banner/ReadOnlyBanner";
 import Loader from '../Loader/Loader';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CompetitionItem from "./CompetitionItem";
 import CompetitionHeader from "./CompetitionHeader";
 import ProductionPlannerStartHeader from "./ProductionPlannerStartHeader";
 import ProductionPlannerToolBarMenu from "./ProductionPlannerToolBarMenu";
+import CompetitionsListHook from "../../hooks/CompetitionsListHook";
 
 export default function ProductionPlannerContainer() {
-  
+
   const [listCompetition, setListCompetition] = useState([]);
   const [filterList, setfilterList] = useState([]);
   const [value, setValue] = useState("");
@@ -28,14 +29,14 @@ export default function ProductionPlannerContainer() {
   const [expandedEvent, setExpandedEvent] = useState(null);
 
   const competitionList = useSelector((state) => state.competitions.data);
+  const [competitions] = CompetitionsListHook()
 
   useEffect(() => {
-    if (competitionList) {
-      setListCompetition(competitionList)
+    if (competitions) {
+      setListCompetition(competitions)
     }
-  }, [competitionList]);
+  }, [competitions]);
 
-  
   useEffect(() => {
     setfilterList(listCompetition);
     setLoad(false)

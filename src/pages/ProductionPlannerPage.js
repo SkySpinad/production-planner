@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ApolloProvider } from "@apollo/client";
-import { MyApolloClient } from "../services/apollo";
 import { SnackbarProvider } from "notistack";
 import { Application } from "react-rainbow-components";
 import { rainbowTheme } from "../common/layout";
@@ -11,8 +10,9 @@ import { mocked_user } from "../mock/mocked_data";
 import store from "../store/store";
 import { Provider } from 'react-redux';
 import ProductionPlannerContainer from "../components/competition/ProductionPlannerContainer";
+import { MyApolloClient } from "../services/apollo";
 
-const apollo = MyApolloClient();
+const apollo = MyApolloClient()
 
 export default function ProductionPlannerPage({ user }) {
   if (user) {
@@ -24,23 +24,26 @@ export default function ProductionPlannerPage({ user }) {
   }
   return (
     <div>
-      <Provider store={store}>
-        <Application theme={rainbowTheme}>
-          <ThemeProvider theme={theme}>
-            <ApolloProvider client={apollo}>
-              <SnackbarProvider
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-              >
-                <ProductionPlannerContainer />
-              </SnackbarProvider>
-            </ApolloProvider>
-          </ThemeProvider>
-        </Application>
-        </Provider>
+      <ApolloProvider client={apollo}>
+        <Provider store={store}>
+          <Application theme={rainbowTheme}>
+            <ThemeProvider theme={theme}>
+                <SnackbarProvider
+                  maxSnack={3}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                >
+                  <ProductionPlannerContainer />
+                </SnackbarProvider>
+            </ThemeProvider>
+          </Application>
+
+          </Provider>
+        </ApolloProvider>
+
+
     </div>
   );
 }
