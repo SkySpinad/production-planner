@@ -1,10 +1,11 @@
+import React from 'react';
 import { createSlice } from '@reduxjs/toolkit';
 import competitions_mock from '../../mock/productionPlanner/competitions.json';
 import CompetitionsListHook from '../../hooks/CompetitionsListHook';
 
 const initialState = { data: competitions_mock.data };
 
-//const [competitions] = CompetitionsListHook();
+// const [competitions] = CompetitionsListHook();
 
 
 const competitionsSlice = createSlice({

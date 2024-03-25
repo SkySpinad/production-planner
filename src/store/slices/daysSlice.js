@@ -7,12 +7,7 @@ const daysSlice = createSlice({
   name: 'days',
   initialState,
   reducers: {
-    addCompetition(state, action) {
-      state.competitions.push(action.payload);
-    },
-    deleteCompetition(state, action) {
-      state.competitions = state.competitions.filter((day) => day.id !== action.payload.id);
-    },
+    
   },
 });
 
