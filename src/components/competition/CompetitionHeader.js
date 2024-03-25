@@ -1,6 +1,9 @@
 import React from "react";
 import { Typography, Stack } from '@mui/material';
 import { useEffect } from "react";
+import { CompetitionClass, competitionField } from "./classes/CompetitionClass";
+import MetadataTable from "../MetadataTable/MetadataTable";
+import PropType from "prop-types"
 
 export default function CompetitionHeader({ data, icon, handleShowDetailsEventItem }) {
 
@@ -32,20 +35,25 @@ export default function CompetitionHeader({ data, icon, handleShowDetailsEventIt
                         {icon}
                     </Typography>
                     <Typography marginBottom={1} variant="h6" style={{ display: 'inline' }}>
-                        {data.id}
+                        {data.name}
                     </Typography>
                     <Typography
                         marginBottom={1}
                         marginLeft={1}
                         sx={{display:'inline',  fontWeight: 700, fontSize: '11px', opacity: 0.5 }}
                     >
-                        {data.name}
+                        {data.id}
                     </Typography>
                 </Stack>
-                
+                <MetadataTable fields={competitionField} metadata={data}  />
+
                 
             </Stack>
         </>
     );
+}
+
+CompetitionHeader.propsType = {
+    encoder: PropType.instanceOf(CompetitionClass)
 }
 

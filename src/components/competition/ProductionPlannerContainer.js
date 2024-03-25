@@ -119,7 +119,7 @@ export default function ProductionPlannerContainer() {
                 <>
                   <CustomAlert
                     color="warning"
-                    text={productionPlannerLang.alert.noVCRFilter}
+                    text={productionPlannerLang.alert.noCompetitionFilter}
                   />
                   {isSearching && (
                     <CustomAlert color="info" text={productionPlannerLang.alert.noRefresh} />

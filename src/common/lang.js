@@ -68,8 +68,7 @@ export const productionPlannerLang = {
       }
   },
   alert:{
-    noVCRFound:"No VCR found...Create new one",
-    noVCRFilter:"No VCR found for your filters",
+    noCompetitionFilter:"No Competition found for your filters",
     noRefresh:"Dont refresh the page",
     seachOnDynamo:"[WIP] Search on Dynamo"
   },
