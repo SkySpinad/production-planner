@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@giobar93/production_ui_library": "^1.0.15",
     "@apollo/client": "^3.7.7",
     "@apollo/react-hooks": "^4.0.0",
     "@aws-sdk/client-appsync": "^3.267.0",

@@ -24,6 +24,7 @@ export default function ProductionPlannerPage({ user }) {
   }
   return (
     <div>
+      {user &&
       <ApolloProvider client={apollo}>
         <Provider store={store}>
           <Application theme={rainbowTheme}>
@@ -39,9 +40,12 @@ export default function ProductionPlannerPage({ user }) {
                 </SnackbarProvider>
             </ThemeProvider>
           </Application>
-
-          </Provider>
-        </ApolloProvider>
+        </Provider>
+      </ApolloProvider>
+      ||
+      <Unauthorized/>
+      }
+        
 
 
     </div>
