@@ -1,13 +1,17 @@
 export class DayClass {
 
-    country
-    eventGroupId
-    feedId
+    tournamentId
+    orderOfPlay
+    coverageLevel
+    drawPosition
+    date
     
-    constructor(country, eventGroupId, feedId){
-        this.country = country
-        this.eventGroupId = eventGroupId
-        this.feedId = feedId
+    constructor(tournamentId, orderOfPlay, coverageLevel, drawPosition, date){
+        this.tournamentId = tournamentId
+        this.orderOfPlay = orderOfPlay
+        this.coverageLevel = coverageLevel
+        this.drawPosition = drawPosition
+        this.date = date
     }
 
 }
@@ -19,12 +23,14 @@ export var FieldType = {
     Time : 'time',
     DateTime : 'datetime',
     MultiSelect : 'multiSelect',
-  }
+}
 
 export var dayConfig= {
-    country: { title: 'Country', type: FieldType.Text, span: 2, display: true },
-    eventGroupId: { title: 'Event Group Id', type: FieldType.Text, span: 2, display: true },
-    feedId: { title: 'Feed', type: FieldType.Text, span: 2, display: true }
+    tournamentId: { title: 'Tournament Id', type: FieldType.Text, span: 2, display: true },
+    orderOfPlay: { title: 'Order Of Play', type: FieldType.Text, span: 2, display: true },
+    coverageLevel: { title: 'Coverage Level', type: FieldType.Text, span: 2, display: true },
+    drawPosition: { title: 'Draw Position', type: FieldType.Text, span: 2, display: true },
+    date: { title: 'Date', type: FieldType.Text, span: 2, display: true }
 };
 
 export const dayField = Object.entries(dayConfig).filter(

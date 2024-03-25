@@ -39,12 +39,6 @@ function dateTemplate(el){
     return <p>{ el === null ? '-' : DateToStringFormat(el)}</p>
 }
 
-/*
-function statusTemplate(encoder){
-    return <CustomStatusItem encoder={encoder} />
-}
-*/
-
 export var competitionConfig= {
     areaId: { title: 'areaId', type: FieldType.Text, span: 2, display: false },
     areaName: { title: 'Area Name', type: FieldType.Text, span: 2, display: true },

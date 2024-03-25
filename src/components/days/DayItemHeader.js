@@ -13,19 +13,19 @@ export default function DayItemHeader({handleShowDetails, data }){
                 justifyContent="space-between"
                 alignItems="center"
                 spacing={2}>
-            <Stack direction="row" alignItems="center" justifyContent={"flex-start"} style={{minWidth:'20%'}}>
+            <Stack direction="row" alignItems="center" justifyContent={"flex-start"} style={{minWidth:'5%'}}>
        
             <ListItemText onClick={handleShowDetails}
                 primary={
-                    <Typography  variant="subtitle1" >
+                    <Typography variant="subtitle1" >
                         <Stack 
                             direction="row">
-                                <span>{data.id}</span>
+                                <span>{data.courtName}</span>
                         </Stack>
                     </Typography>
                 }
                 secondary={<Typography  variant="h5">
-                        {data.name}
+                        {data.courtId}
                     </Typography>}
             />
             
