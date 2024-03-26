@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Accordion, AccordionDetails, List } from '@mui/material'
 import DayItem from './DayItem'
 import DaysListHook from '../../hooks/DaysListHook';
+import { useSelector } from 'react-redux';
 
 export default function DaysList({ visible, isOnlyRead, element}) {
 
-  //const [dayList, setDayList] = useState(data);
-  const [dayList, setDayList] = useState([]);
-  const [days] = DaysListHook(element.id)
-
-
-  useEffect(() => {
-    if(days.data) {
-      setDayList(getDaysList(days.data))
-    }
-
-  }, [days])
+  const dayList = useSelector((state) => state.days.data);
+  DaysListHook(element.id)
 
   function getDaysList(data) {
     const courtList = []
@@ -32,7 +24,7 @@ export default function DaysList({ visible, isOnlyRead, element}) {
     <Accordion defaultExpanded expanded={visible} TransitionProps={{ unmountOnExit: true }} elevation={0} style={{background:'#ffffff00', width:'100%'}}>
       <AccordionDetails style={{padding:0, margin:0}}>
       <List key={"daysList"}>
-        {dayList && dayList.map((day, index)=> (
+        {dayList.data && getDaysList(dayList.data).map((day, index)=> (
           <DayItem data={day} key={"ev" + index} isOnlyRead={isOnlyRead} />
         ))}
       </List>

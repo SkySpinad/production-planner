@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { LIST_COMPETITIONS } from "../api/queries";
 import { useDispatch } from "react-redux";
-import { initializeCompetition } from "../store/slices/competitionSlice";
+import { filterByText } from "../store/slices/competitionSlice";
 
 export default function CompetitionsListHook() {
     const [competitions, setInnerData] = useState([])
@@ -21,8 +21,7 @@ export default function CompetitionsListHook() {
             }
             var tmpList = [...data.listCompetitions.items]
             setInnerData([...tmpList])
-            dispatch(initializeCompetition([...tmpList]));
-
+            dispatch(filterByText([...tmpList]));
         }
     }, [data])
 

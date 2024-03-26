@@ -20,28 +20,33 @@ import CompetitionsListHook from "../../hooks/CompetitionsListHook";
 
 export default function ProductionPlannerContainer() {
 
-  const [listCompetition, setListCompetition] = useState([]);
   const [filterList, setfilterList] = useState([]);
-  const [value, setValue] = useState("");
   const [load, setLoad] = useState(true);
   const [activePage, setActivePage] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedEvent, setExpandedEvent] = useState(null);
 
   const competitionList = useSelector((state) => state.competitions.data);
-  const [competitions] = CompetitionsListHook()
+  CompetitionsListHook()
 
   useEffect(() => {
-    if (competitions) {
-      setListCompetition(competitions)
+    if (competitionList) {
+      console.log("competitionList: " , competitionList);
+      setfilterList(competitionList)
+      setLoad(false)
     }
-  }, [competitions]);
+  }, [competitionList]);
+
+    /*
+      // const [listCompetition, setListCompetition] = useState([]);
+ // const [value, setValue] = useState("");
 
   useEffect(() => {
     setfilterList(listCompetition);
     setLoad(false)
   }, [listCompetition]);
   
+
   useEffect(() => {
     if (value) {
       setfilterList(getCompetitionFilter(value));
@@ -50,12 +55,19 @@ export default function ProductionPlannerContainer() {
     }
   }, [value]);
 
+
+  function setValueSearchBar(valSearch) {
+    setValue(valSearch);
+  }
+
   
   function getCompetitionFilter(value) {
     return listCompetition.filter((comp) => 
     comp.id.toUpperCase().includes(value.toUpperCase()) ||
     comp.name.toUpperCase().includes(value.toUpperCase()))
   }
+
+  */
 
   function handleShowDetailsEventItem(id) {
     setExpandedEvent(expandedEvent => expandedEvent === id ? null : id);
@@ -69,9 +81,6 @@ export default function ProductionPlannerContainer() {
     downloadCsv(filterList, "competitions")
   }
 
-  function setValueSearchBar(valSearch) {
-    setValue(valSearch);
-  }
 
   var nElemOnPage = 10;
   var nPages = filterList.length / nElemOnPage < 1 ? 1 : filterList.length / nElemOnPage + 1;
@@ -83,8 +92,8 @@ export default function ProductionPlannerContainer() {
       title={"Production Planner"}
       headerStartComponent={
         <ProductionPlannerStartHeader
-          currentText={value}
-          onChangeText={setValueSearchBar}
+          //currentText={value}
+         // onChangeText={setValueSearchBar}
         />
       }
       sidebar={<></>}
