@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   filterData: [],
+  isLoading: true
 };
 
 const competitionsSlice = createSlice({
@@ -13,6 +14,7 @@ const competitionsSlice = createSlice({
     allCompetitions: (state, action) => {
       state.data = action.payload
       state.filterData = state.data
+      state.isLoading = false
     },
     searchByText: (state, action) => {
       state.filterData = state.data.filter((comp) => 

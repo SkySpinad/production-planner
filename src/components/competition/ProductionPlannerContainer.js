@@ -19,21 +19,12 @@ import ProductionPlannerToolBarMenu from "./ProductionPlannerToolBarMenu";
 import CompetitionsListHook from "../../hooks/CompetitionsListHook";
 
 export default function ProductionPlannerContainer() {
-
-  const [filterList, setfilterList] = useState([]);
-  const [load, setLoad] = useState(true);
   const [activePage, setActivePage] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedEvent, setExpandedEvent] = useState(null);
   const competitionList = useSelector((state) => state.competitions.filterData);
+  const isLoading = useSelector((state) => state.competitions.isLoading);
   CompetitionsListHook()
-
-  useEffect(() => {
-    if (competitionList) {
-      setfilterList(competitionList)
-      setLoad(false)
-    }
-  }, [competitionList]);
 
   function handleShowDetailsEventItem(id) {
     setExpandedEvent(expandedEvent => expandedEvent === id ? null : id);
@@ -44,12 +35,11 @@ export default function ProductionPlannerContainer() {
   }
 
   function handleCsv() {
-    downloadCsv(filterList, "competitions")
+    downloadCsv(competitionList, "competitions")
   }
 
-
   var nElemOnPage = 10;
-  var nPages = filterList.length / nElemOnPage < 1 ? 1 : filterList.length / nElemOnPage + 1;
+  var nPages = competitionList.length / nElemOnPage < 1 ? 1 : competitionList.length / nElemOnPage + 1;
   var sliceStart = (activePage - 1) * nElemOnPage;
   var sliceEnd = (activePage - 1) * nElemOnPage + nElemOnPage;
 
@@ -74,10 +64,10 @@ export default function ProductionPlannerContainer() {
         activePage={activePage}
         onChange={handleChangePage}
       />
-      <>{load && <Loader></Loader>}</>
+      <>{isLoading && <Loader></Loader>}</>
       <Box flex={2} p={2} style={layout.boxRightContainer}>
-        {(filterList.length > 0 &&
-          filterList.slice(sliceStart, sliceEnd).map((element, index) => (
+        {(competitionList.length > 0 &&
+          competitionList.slice(sliceStart, sliceEnd).map((element, index) => (
             <CompetitionItem key={"ev" + index} element={element} showDetailsEventItem={expandedEvent == element.id}>
               <CompetitionHeader
                   data={element}
@@ -88,7 +78,7 @@ export default function ProductionPlannerContainer() {
           ))
         ) || (
             <VerticalCentered>
-              {filterList.length == 0 && (
+              {competitionList.length == 0 && (
                 <>
                   <CustomAlert
                     color="warning"
