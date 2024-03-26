@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import InnerAppBar from "../innerbar/InnerAppBar";
 import { productionPlannerLang } from "../../common/lang";
 import { layout, styleAvatar } from "../../common/layout";
-import { downloadCsv } from "../../utils/utils";
 import { Pagination } from "react-rainbow-components";
 import CustomAlert from "../alert/CustomAlert";
 import VerticalCentered from "../layout/VerticalCentered";
@@ -34,10 +33,6 @@ export default function ProductionPlannerContainer() {
     setActivePage(page);
   }
 
-  function handleCsv() {
-    downloadCsv(competitionList, "competitions")
-  }
-
   var nElemOnPage = 10;
   var nPages = competitionList.length / nElemOnPage < 1 ? 1 : competitionList.length / nElemOnPage + 1;
   var sliceStart = (activePage - 1) * nElemOnPage;
@@ -50,7 +45,7 @@ export default function ProductionPlannerContainer() {
         <ProductionPlannerStartHeader />
       }
       sidebar={<></>}
-      menu={<ProductionPlannerToolBarMenu handleDownloadCsv={handleCsv} />
+      menu={<ProductionPlannerToolBarMenu />
       }
     >
       {

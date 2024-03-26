@@ -74,7 +74,10 @@ export const productionPlannerLang = {
   },
   dialog:{
     defaultConfirmButton:"Confirm"
-}
+  },
+  download: {
+    fileNameCompetitions: "Competitions"
+  }
 }
 
 

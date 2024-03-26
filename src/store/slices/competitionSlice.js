@@ -1,5 +1,6 @@
 import React from 'react';
 import { createSlice } from '@reduxjs/toolkit';
+import { downloadCsv } from '../../utils/utils';
 
 const initialState = {
   data: [],
@@ -21,9 +22,12 @@ const competitionsSlice = createSlice({
           comp.id.toUpperCase().includes(action.payload.toUpperCase()) ||
           comp.name.toUpperCase().includes(action.payload.toUpperCase()))
         return state
+    },
+    downloadFile: (state, action) => {
+      downloadCsv(state.filterData, action.payload)
     }
   }
 });
 
-export const { allCompetitions, searchByText } = competitionsSlice.actions;
+export const { allCompetitions, searchByText, downloadFile } = competitionsSlice.actions;
 export default competitionsSlice.reducer;

@@ -6,9 +6,12 @@ import MenuItemCustom from "../menu/MenuItem";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import SingleMenu from "../menu/v2/SingleMenu";
 import { productionPlannerLang } from "../../common/lang";
+import { useDispatch } from "react-redux";
+import { downloadFile } from "../../store/slices/competitionSlice";
 
-export default function ProductionPlannerToolBarMenu({ handleDownloadCsv }) {
+export default function ProductionPlannerToolBarMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -17,6 +20,10 @@ export default function ProductionPlannerToolBarMenu({ handleDownloadCsv }) {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  function handleDownloadCsv(){
+    dispatch(downloadFile(productionPlannerLang.download.fileNameCompetitions))
+  }
 
   return <div><CustomIcon onClick={handleMenu}><MoreVert /></CustomIcon>
     <SingleMenu
