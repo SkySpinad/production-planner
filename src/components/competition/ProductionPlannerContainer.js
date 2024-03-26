@@ -25,49 +25,15 @@ export default function ProductionPlannerContainer() {
   const [activePage, setActivePage] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedEvent, setExpandedEvent] = useState(null);
-
-  const competitionList = useSelector((state) => state.competitions.data);
+  const competitionList = useSelector((state) => state.competitions.filterData);
   CompetitionsListHook()
 
   useEffect(() => {
     if (competitionList) {
-      console.log("competitionList: " , competitionList);
       setfilterList(competitionList)
       setLoad(false)
     }
   }, [competitionList]);
-
-    /*
-      // const [listCompetition, setListCompetition] = useState([]);
- // const [value, setValue] = useState("");
-
-  useEffect(() => {
-    setfilterList(listCompetition);
-    setLoad(false)
-  }, [listCompetition]);
-  
-
-  useEffect(() => {
-    if (value) {
-      setfilterList(getCompetitionFilter(value));
-    } else {
-      setfilterList(listCompetition);
-    }
-  }, [value]);
-
-
-  function setValueSearchBar(valSearch) {
-    setValue(valSearch);
-  }
-
-  
-  function getCompetitionFilter(value) {
-    return listCompetition.filter((comp) => 
-    comp.id.toUpperCase().includes(value.toUpperCase()) ||
-    comp.name.toUpperCase().includes(value.toUpperCase()))
-  }
-
-  */
 
   function handleShowDetailsEventItem(id) {
     setExpandedEvent(expandedEvent => expandedEvent === id ? null : id);
@@ -91,10 +57,7 @@ export default function ProductionPlannerContainer() {
     <InnerAppBar
       title={"Production Planner"}
       headerStartComponent={
-        <ProductionPlannerStartHeader
-          //currentText={value}
-         // onChangeText={setValueSearchBar}
-        />
+        <ProductionPlannerStartHeader />
       }
       sidebar={<></>}
       menu={<ProductionPlannerToolBarMenu handleDownloadCsv={handleCsv} />
