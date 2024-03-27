@@ -16,7 +16,7 @@ export default function CompetitionHeader({ data, icon, handleShowDetailsEventIt
                     spacing={2}
                     style={{ minWidth: '20%' }}>
                     <Typography
-                        onClick={() => handleShowDetailsEventItem(data.id)} variant="h6" style={{ display: 'inline' }}
+                        onClick={() => handleShowDetailsEventItem(data.eventGroupId)} variant="h6" style={{ display: 'inline' }}
                     >
                         {icon}
                     </Typography>

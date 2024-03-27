@@ -10,10 +10,12 @@ export default function DayItemHeader({handleShowDetails, data }){
     return <Stack direction="row"
                 justifyContent="space-between"
                 alignItems="center"
-                spacing={2}>
+                spacing={2}
+                onClick={handleShowDetails}
+                >
             <Stack direction="row" alignItems="center" justifyContent={"flex-start"} style={{minWidth:'5%'}}>
        
-            <ListItemText onClick={handleShowDetails}
+            <ListItemText
                 primary={
                     <Typography variant="subtitle1" >
                         <Stack 

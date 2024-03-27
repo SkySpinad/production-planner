@@ -25,8 +25,8 @@ export default function ProductionPlannerContainer() {
   const isLoading = useSelector((state) => state.competitions.isLoading);
   CompetitionsListHook()
 
-  function handleShowDetailsEventItem(id) {
-    setExpandedEvent(expandedEvent => expandedEvent === id ? null : id);
+  function handleShowDetailsEventItem(eventGroupId) {
+    setExpandedEvent(expandedEvent => expandedEvent === eventGroupId ? null : eventGroupId);
   }
 
   function handleChangePage(event, page) {
@@ -63,7 +63,7 @@ export default function ProductionPlannerContainer() {
       <Box flex={2} p={2} style={layout.boxRightContainer}>
         {(competitionList.length > 0 &&
           competitionList.slice(sliceStart, sliceEnd).map((element, index) => (
-            <CompetitionItem key={"ev" + index} element={element} showDetailsEventItem={expandedEvent == element.id}>
+            <CompetitionItem key={"ev" + index} element={element} showDetailsEventItem={expandedEvent == element.eventGroupId}>
               <CompetitionHeader
                   data={element}
                   icon={getSportIcon(element.sport, styleAvatar)}
