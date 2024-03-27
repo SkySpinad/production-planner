@@ -18,21 +18,6 @@ export default function LocationsListHook(eventGroupId) {
             console.log('response locations: ' , response.data.getCourtsByCompetitionId.items);
             dispatch(allLocations(response.data.getCourtsByCompetitionId.items))
           })
-    /*
-      listEvents({
-        variables: {
-          "input": {
-            "action": "GetEventsUnconfirmed"
-          }    
-        },
-      })
-        .then((response) => {
-          console.log("response", response)
-          var jsonResponse = JSON.parse(response.data.listUnconfirmedEventsOverlap.response)
-          setEvents(jsonResponse.body.data.listUnconfirmedEvents.items)
-        })
-        .catch((error) => console.log(error));
-        */
   }, [getCourtsByEventGroupId])
   
   }

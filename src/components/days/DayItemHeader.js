@@ -28,9 +28,9 @@ export default function DayItemHeader({handleShowDetails, data }){
             />
           </Stack>
            <MetadataTable fields={dayField} metadata={data}  />
-           <CustomStatusItem encoder={data} />
-           <CustomStatusItem encoder={data} />
-           <CustomStatusItem encoder={data} />
+           <CustomStatusItem data={data} />
+           <CustomStatusItem data={data} />
+           <CustomStatusItem data={data} />
           </Stack>
 }
 

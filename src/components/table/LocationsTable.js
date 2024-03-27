@@ -5,6 +5,8 @@ import { color } from '../../common/layout';
 import './LocationsTable.css';
 import PresentationCreateDialog from '../dialog/PresentationCreateDialog';
 import PresentationViewDialog from '../dialog/PresentationViewDialog';
+import CustomStatusItem from '../list/v2/CustomStatusItem';
+import { HorizontalCentered } from '@giobar93/production_ui_library';
 
 export default function LocationsTable({ data, isOnlyRead, handleUpdateRows, handleUpsertPresentation, handleUpdatePresentations}) {
 
@@ -29,6 +31,14 @@ export default function LocationsTable({ data, isOnlyRead, handleUpdateRows, han
           handleClose={handleCloseHorizIcon}
           handleUpdatePresentations={handleUpdatePresentations}
         />
+  };
+
+  const viewStatus = (rowData) => {
+    return <HorizontalCentered>
+        <CustomStatusItem data={rowData} />
+        <CustomStatusItem data={rowData} />
+        <CustomStatusItem data={rowData} />
+    </HorizontalCentered>
   };
 
   const centeredStyle = { textAlign: 'center', verticalAlign: 'middle' };
@@ -67,6 +77,7 @@ const onRowEditComplete = (e) => {
       <Column field="feedId" header="Feed" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column body={(options) => openDialogViewPresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column body={(options) => openDialogCreatePresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column body={(options) => viewStatus(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       {
         !isOnlyRead && <Column rowEditor headerStyle={centeredStyle} bodyStyle={centeredStyle} />
       }

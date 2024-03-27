@@ -32,9 +32,9 @@ export default function CompetitionHeader({ data, icon, handleShowDetailsEventIt
                     </Typography>
                 </Stack>
                 <MetadataTable fields={competitionField} metadata={data}  />
-                <CustomStatusItem encoder={data} />
-                <CustomStatusItem encoder={data} />
-                <CustomStatusItem encoder={data} />
+                <CustomStatusItem data={data} />
+                <CustomStatusItem data={data} />
+                <CustomStatusItem data={data} />
             </Stack>
 }
 
