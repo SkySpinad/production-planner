@@ -19,8 +19,8 @@ const competitionsSlice = createSlice({
     },
     searchByText: (state, action) => {
       state.filterData = state.data.filter((comp) => 
-          comp.id.toUpperCase().includes(action.payload.toUpperCase()) ||
-          comp.name.toUpperCase().includes(action.payload.toUpperCase()))
+          comp.eventGroupId.toUpperCase().includes(action.payload.toUpperCase()) ||
+          comp.competitionName.toUpperCase().includes(action.payload.toUpperCase()))
         return state
     },
     downloadFile: (state, action) => {
