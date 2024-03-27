@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { color, rainbowTheme } from "../../../common/layout";
 import { Application, Button, Modal } from "react-rainbow-components";
-import { productionPlannerLang } from "../../../common/lang";
-import { ACTION_PERMISSIONS, isPermissionDenied } from "../../../common/user";
+import { productionPlannerLang } from "../../common/lang";
+import { color, rainbowTheme } from "../../common/layout";
+import { ACTION_PERMISSIONS, isPermissionDenied } from "../../common/user";
 
 export default function BasicDialog({ footer, title, children, isOpen, handleClose,handleConfirm,confirmLabel }) {
   useEffect(() => {

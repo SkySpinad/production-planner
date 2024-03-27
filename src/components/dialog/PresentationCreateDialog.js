@@ -1,11 +1,9 @@
 import React from "react";
 import BasicDialog from "./BasicDialog";
 import { useState } from "react";
-import MenuItem from "../../menu/MenuItem";
-import { vcrLang } from "../../../common/lang";
-import InputText from "../../text/InputText";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
-import { VerticalCentered, HorizontalCentered } from "@giobar93/production_ui_library";
+import { VerticalCentered, HorizontalCentered, MenuItem, InputText } from "@giobar93/production_ui_library";
+import { vcrLang } from "../../common/lang";
 
 export default function PresentationCreateDialog({data, handleClose, handleUpsertPresentation}) {
 

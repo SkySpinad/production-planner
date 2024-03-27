@@ -3,8 +3,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { color } from '../../common/layout';
 import './LocationsTable.css';
-import PresentationCreateDialog from '../dialog/v2/PresentationCreateDialog';
-import PresentationViewDialog from '../dialog/v2/PresentationViewDialog';
+import PresentationCreateDialog from '../dialog/PresentationCreateDialog';
+import PresentationViewDialog from '../dialog/PresentationViewDialog';
 
 export default function LocationsTable({ data, isOnlyRead, handleUpdateRows, handleUpsertPresentation, handleUpdatePresentations}) {
 

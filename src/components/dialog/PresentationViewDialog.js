@@ -1,17 +1,17 @@
 import React from "react";
 import BasicDialog from "./BasicDialog";
 import { useState } from "react";
-import MenuItem from "../../menu/MenuItem";
-import { vcrLang } from "../../../common/lang";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { color } from "../../../common/layout";
 import { useEffect } from "react";
-import { checkFieldIsempty } from "../../../utils/utils";
 import { Button } from "react-rainbow-components";
 import { InputText } from 'primereact/inputtext';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { vcrLang } from "../../common/lang";
+import { MenuItem } from "@giobar93/production_ui_library";
+import { color } from "../../common/layout";
+import { checkFieldIsempty } from "../../utils/utils";
 
 export default function PresentationViewDialog({data, isOnlyRead, handleClose, handleUpdatePresentations }) {
 
