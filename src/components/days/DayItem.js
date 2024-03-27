@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, ListItemText } from "@mui/material";
 import { statusColor } from "../../common/layout";
-import { useSelector, useDispatch } from 'react-redux';
 import DayItemHeader from "./DayItemHeader";
 import LocationsList from "../location/LocationsList";
 
-export default function DayItem({ data, isOnlyRead }){
-    
+export default function DayItem({ data, isOnlyRead, element }){
+   
   const [showDetails, setShowDetails] = useState(false)
-  const [locations, setLocations] = React.useState([]);
-
-  const locationList = useSelector((state) => state.locations.data);
-
-  useEffect(() => {
-  }, [locations]);
 
   function handleShowDetails(){
     setShowDetails(!showDetails)
-    setLocations(locationList)
   }
 
-  return <>
-    <ListItemText
+  return <ListItemText
       disableTypography
       primary={
         <Box sx={{ cursor: "pointer" }}>
@@ -33,7 +24,7 @@ export default function DayItem({ data, isOnlyRead }){
       }
       secondary={
         (showDetails || !isOnlyRead) &&
-        <LocationsList data={locations} visible={true} />
+        <LocationsList visible={true} element={element}/>
       }
       sx={{
         my: 2,
@@ -46,5 +37,4 @@ export default function DayItem({ data, isOnlyRead }){
         pr: 1,
       }}
     />
-  </>
 }

@@ -80,4 +80,19 @@ export const productionPlannerLang = {
   }
 }
 
+export const vcrLang = {
+    element:{
+        menu:{
+            createPresentation:"Create New Presentation",
+            getPresentation:"View Presentations"
+        }
+    },
+    dialogs:{
+
+        defaultCreateLabel:"Create",
+        defaultViewPresentations:"Presentations"
+    },
+  }
+
+
 

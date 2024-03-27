@@ -11,7 +11,9 @@ import store from "../store/store";
 import { Provider } from 'react-redux';
 import ProductionPlannerContainer from "../components/competition/ProductionPlannerContainer";
 import { MyApolloClient } from "../services/apollo";
-
+import "primereact/resources/themes/lara-light-indigo/theme.css";     
+import "primereact/resources/primereact.min.css"; 
+ 
 const apollo = MyApolloClient()
 
 export default function ProductionPlannerPage({ user }) {

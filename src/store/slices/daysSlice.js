@@ -1,18 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
+import days_mock from '../../mock/productionPlanner/days.json'
 
 const initialState = {
-  data: []
+  data: days_mock
 };
 
 const daysSlice = createSlice({
   name: 'days',
   initialState,
   reducers: {
-    initializeDays: (state, action) => {
-      state.data = action.payload;
-    },
   }
 });
 
-export const { initializeDays } = daysSlice.actions;
 export default daysSlice.reducer;

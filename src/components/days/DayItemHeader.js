@@ -6,10 +6,8 @@ import { DayClass, dayField } from "./classes/DayClass";
 import CustomStatusItem from "../list/v2/CustomStatusItem";
 
 export default function DayItemHeader({handleShowDetails, data }){
-
-    return (
-        <>
-        <Stack direction="row"
+   
+    return <Stack direction="row"
                 justifyContent="space-between"
                 alignItems="center"
                 spacing={2}>
@@ -20,23 +18,18 @@ export default function DayItemHeader({handleShowDetails, data }){
                     <Typography variant="subtitle1" >
                         <Stack 
                             direction="row">
-                                <span>{data.courtName}</span>
+                                <span>{data.id}</span>
                         </Stack>
                     </Typography>
                 }
-                secondary={<Typography  variant="h5">
-                        {data.courtId}
-                    </Typography>}
+               
             />
-            
           </Stack>
            <MetadataTable fields={dayField} metadata={data}  />
            <CustomStatusItem encoder={data} />
            <CustomStatusItem encoder={data} />
            <CustomStatusItem encoder={data} />
           </Stack>
-        </>
-      );
 }
 
 DayItemHeader.propsType = {

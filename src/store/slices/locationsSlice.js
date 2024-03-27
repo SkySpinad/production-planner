@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import locations_mock from '../../mock/productionPlanner/locations.json'
 
-const initialState = { data: locations_mock.data };
-
+const initialState = {
+  data: []
+};
 const locationsSlice = createSlice({
   name: 'days',
   initialState,
   reducers: {
-   
-  },
+    allLocations: (state, action) => {
+      state.data = action.payload
+    }
+  }
 });
 
-export const { addCompetition, deleteCompetition } = locationsSlice.actions;
+export const { allLocations } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

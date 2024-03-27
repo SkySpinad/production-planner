@@ -15,7 +15,7 @@ import CompetitionItem from "./CompetitionItem";
 import CompetitionHeader from "./CompetitionHeader";
 import ProductionPlannerStartHeader from "./ProductionPlannerStartHeader";
 import ProductionPlannerToolBarMenu from "./ProductionPlannerToolBarMenu";
-import CompetitionsListHook from "../../hooks/CompetitionsListHook";
+import CompetitionsListHook from "../hooks/CompetitionsListHook";
 
 export default function ProductionPlannerContainer() {
   const [activePage, setActivePage] = useState(1);

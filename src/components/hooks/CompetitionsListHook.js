@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { LIST_COMPETITIONS } from "../api/queries";
+import { useEffect } from "react";
+import { LIST_COMPETITIONS } from "../../api/graphql/queries";
 import { useDispatch } from "react-redux";
-import { allCompetitions } from "../store/slices/competitionSlice";
+import { allCompetitions } from "../../store/slices/competitionSlice";
 
 export default function CompetitionsListHook() {
     const dispatch = useDispatch();

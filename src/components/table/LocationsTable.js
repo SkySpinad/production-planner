@@ -1,45 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { color } from '../../common/layout';
-import CustomStatusItem from '../list/v2/CustomStatusItem';
-import HorizontalCentered from '../layout/HorizontalCentered';
+import './LocationsTable.css';
+import PresentationCreateDialog from '../dialog/v2/PresentationCreateDialog';
+import PresentationViewDialog from '../dialog/v2/PresentationViewDialog';
 
-export default function LocationsTable({ data }){
+export default function LocationsTable({ data, isOnlyRead, handleUpdateRows, handleUpsertPresentation, handleUpdatePresentations}) {
 
-  const headerStyle = { color: '#757575' };
-  const bodyStyle = { color: color.blue };
-  const tableStyle = { minWidth: '100%' , fontSize: '12px' };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-  useEffect(() => {
+  const handleCloseHorizIcon = () => {
+      setAnchorEl(null);
+  };
+  const openDialogCreatePresentation = (rowData) => {
+    return <PresentationCreateDialog
+          data={rowData}
+          handleUpsertPresentation={handleUpsertPresentation}
+          handleClose={handleCloseHorizIcon}
+        />
+  };
 
-  }, [data]);
+  const openDialogViewPresentation = (rowData) => {
+    return <PresentationViewDialog
+          data={rowData}
+          handleUpsertPresentation={handleUpsertPresentation}
+          handleClose={handleCloseHorizIcon}
+          handleUpdatePresentations={handleUpdatePresentations}
+        />
+  };
 
-  
-  const actionBodyPresentation = (rowData) => {
-    return <HorizontalCentered>
-    <CustomStatusItem encoder={rowData} />
-    <CustomStatusItem encoder={rowData} />
-    <CustomStatusItem encoder={rowData} />
-    </HorizontalCentered>
- };
+  const centeredStyle = { textAlign: 'center', verticalAlign: 'middle' };
 
-  return <DataTable
-    value={data}
-    style={{ border: 'none', marginLeft: '50px', marginTop: '25px' }}
-    scrollable
-    removableSort
-    scrollHeight="400px"
-    size={"small"}
-    sortField="follow"
-    sortOrder={1}
-    editMode="row"
-    tableStyle={tableStyle}
-    rows={25}
-  >
-    <Column field="id" header="Location ID" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-    <Column field="name" header="Location Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-    <Column body={actionBodyPresentation} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-  
-  </DataTable>
+  const headerStyle = {
+    color: '#757575',
+  };
+
+  const bodyStyle = {
+    color: color.blue,
+  };
+
+const onRowEditComplete = (e) => {
+  let _data = [...data];
+  let { newData, index } = e;
+  _data[index] = newData;
+  handleUpdateRows(_data)
+};
+
+  return (
+    <DataTable
+      value={data}
+      onRowEditComplete={onRowEditComplete}
+      style={{ border: 'none', marginLeft: '50px', marginTop: '25px' }}
+      scrollable
+      removableSort
+      scrollHeight="400px"
+      size={"small"}
+      sortField="follow"
+      sortOrder={1}
+      editMode="row"
+      tableStyle={{ minWidth: '50rem', fontSize: '12px' }}
+      rows={25}
+    >
+      <Column field="courtName" header="Court Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column field="feedId" header="Feed" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column body={(options) => openDialogViewPresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column body={(options) => openDialogCreatePresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      {
+        !isOnlyRead && <Column rowEditor headerStyle={centeredStyle} bodyStyle={centeredStyle} />
+      }
+    </DataTable>
+  );
 }

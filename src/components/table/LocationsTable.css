@@ -1,0 +1,23 @@
+.custom-header {
+    text-align: center !important;
+    color: lightgray !important;
+}
+
+.custom-body {
+    text-align: center !important;
+    color: steelblue !important;
+}
+
+.custom-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+    color: lightgray;
+}
+
+.custom-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+    color: blue;
+}
+
+.p-dropdown-label {
+    font-size: 12px !important;
+}
