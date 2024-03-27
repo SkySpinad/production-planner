@@ -9,7 +9,7 @@ import { FILL_WORKORDER } from "../../api/graphql/mutations";
 import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
 import { allLocations, updateLocations } from "../../store/slices/locationsSlice";
-import { createLocationObject } from "../../services/serviceDB";
+import { createLocationObject, updateLocationObject } from "../../services/serviceDB";
 
 export default function LocationsList({ visible, element }){
 
@@ -20,58 +20,55 @@ export default function LocationsList({ visible, element }){
   const dispatch = useDispatch();
 
 
-    useEffect(()=>{
-    },[visible])
+  useEffect(()=>{
+  },[visible])
 
-    function handleUpdateRows(){
 
-    }
+  function handleUpdatePresentations(presentations, court){
+    callPresentationAndFeedMutation(updateLocationObject(presentations, court), vcrLang.typeAction.editLocation, "Edited Court")
+  }
 
-    function handleUpdatePresentations(){
-      
-    }
+  function handleUpsertPresentation(description, feedId, type, source, ipRed, portRed, court){
+    callPresentationAndFeedMutation(createLocationObject(description, feedId, type, source, ipRed, portRed, court, element), vcrLang.typeAction.editLocation, "Edited Location")
+  }
 
-    function handleUpsertPresentation(description, feedId, type, source, ipRed, portRed, court){
-      callPresentationAndFeedMutation(createLocationObject(description, feedId, type, source, ipRed, portRed, court, element), vcrLang.typeAction.editLocation, "Edited Location")
-    }
+  function callPresentationAndFeedMutation(upsertCourt, action, message){      
+    upsertPresentationAndFeed({
+      variables: {
+        input: {
+          "action": action,
+          "input": JSON.stringify(upsertCourt)
+        }
+      },
+    })
+    .then((response) =>{
+      console.log('response: ' , response);
+      if(response.data) {
+        var jsonResponse = JSON.parse(response.data.fillWorkorder.response)
+        if(jsonResponse.statusCode != 200) {
+        dispatch(allLocations(locationList))
+        enqueueSnackbar(JSON.stringify(jsonResponse.body), {autoHideDuration: 5000, variant: "error" });
+        } else {
+        dispatch(updateLocations(upsertCourt[0]))
+        enqueueSnackbar(message, { autoHideDuration: 2500, variant: 'success' })  
+        }
+      } else {
+        enqueueSnackbar(response.data, { autoHideDuration: 5000, variant: "error" });
+      }
+    })
+    .catch((error) => {
+      console.log("error: ", error)
+      enqueueSnackbar(error, { autoHideDuration: 5000, variant: "error" });
+    });
 
-    function callPresentationAndFeedMutation(upsertCourt, action, message){      
-      upsertPresentationAndFeed({
-       variables: {
-         input: {
-           "action": action,
-           "input": JSON.stringify(upsertCourt)
-         }
-       },
-     })
-     .then((response) =>{
-       console.log('response: ' , response);
-       if(response.data) {
-         var jsonResponse = JSON.parse(response.data.fillWorkorder.response)
-         if(jsonResponse.statusCode != 200) {
-          dispatch(allLocations(locationList))
-          enqueueSnackbar(JSON.stringify(jsonResponse.body), {autoHideDuration: 5000, variant: "error" });
-         } else {
-          dispatch(updateLocations(upsertCourt[0]))
-          enqueueSnackbar(message, { autoHideDuration: 2500, variant: 'success' })  
-         }
-       } else {
-         enqueueSnackbar(response.data, { autoHideDuration: 5000, variant: "error" });
-       }
-     })
-     .catch((error) => {
-       console.log("error: ", error)
-       enqueueSnackbar(error, { autoHideDuration: 5000, variant: "error" });
-     });
-  
-    }
+  }
 
-    return <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
-        <AccordionDetails style={{paddingBottom:'10px', margin:0}}>
-          <Typography textAlign="center" fontSize={12} fontWeight={700} my={2}>
-            Locations
-          </Typography>
-            <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList} handleUpdateRows={handleUpdateRows} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
-      </AccordionDetails>
-    </Accordion>
+  return <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
+      <AccordionDetails style={{paddingBottom:'10px', margin:0}}>
+        <Typography textAlign="center" fontSize={12} fontWeight={700} my={2}>
+          Locations
+        </Typography>
+          <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
+    </AccordionDetails>
+  </Accordion>
 }

@@ -8,7 +8,7 @@ import PresentationViewDialog from '../dialog/PresentationViewDialog';
 import CustomStatusItem from '../list/v2/CustomStatusItem';
 import { HorizontalCentered } from '@giobar93/production_ui_library';
 
-export default function LocationsTable({ data, isOnlyRead, handleUpdateRows, handleUpsertPresentation, handleUpdatePresentations}) {
+export default function LocationsTable({ data, isOnlyRead, handleUpsertPresentation, handleUpdatePresentations}) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -55,7 +55,6 @@ const onRowEditComplete = (e) => {
   let _data = [...data];
   let { newData, index } = e;
   _data[index] = newData;
-  handleUpdateRows(_data)
 };
 
   return (

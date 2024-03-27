@@ -34,3 +34,37 @@ export function createLocationObject(description, feedId, type, source, ipRed, p
       listCourt.push(objUpsertCourt)
     return listCourt
 } 
+
+export function updateLocationObject(presentations, court) {
+  const list = []
+  const objUpsertCourt = {
+    "country":court.country,
+    "courtId":court.courtId,
+    "courtName":court.courtName,
+    "eventGroupId":court.eventGroupId,
+    "feedId":court.feedId,
+    "presentation": checkFieldIsempty(presentations) ? null : {
+      "id": court.eventGroupId,
+      "eventId": court.eventGroupId,
+      "client": "Sky Sports",
+      "vision": "1",
+      "description": presentations.description,
+      "createdBy": "ems",
+      "presentations": [
+          {
+              "transport": {
+                  "type": presentations.type,
+                  "source": presentations.source,
+                  "params": {
+                      "ipRed": presentations.ipRed,
+                      "portRed": presentations.portRed
+                  }
+              }
+          }
+      ]
+    }
+  }
+  list.push(objUpsertCourt)
+  return list
+} 
+
