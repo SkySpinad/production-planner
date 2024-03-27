@@ -11,8 +11,7 @@ export default function LocationsListHook(eventGroupId) {
     useEffect(() => {
         getCourtsByEventGroupId({
             variables: {
-                //"eventGroupId": eventGroupId
-                "eventGroupId": "6cjglf90ssuy1gorlnfre1dsk"
+                "eventGroupId": eventGroupId
             },
             fetchPolicy: 'no-cache',
           }).then((response) => {
