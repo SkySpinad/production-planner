@@ -92,6 +92,10 @@ export const vcrLang = {
         defaultCreateLabel:"Create",
         defaultViewPresentations:"Presentations"
     },
+    typeAction: {
+        editCompetition: "EditCompetition",
+        editLocation: "EditCourt"
+      }
   }
 
 
