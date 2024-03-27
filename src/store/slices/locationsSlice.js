@@ -4,7 +4,7 @@ const initialState = {
   data: []
 };
 const locationsSlice = createSlice({
-  name: 'days',
+  name: 'locations',
   initialState,
   reducers: {
     allLocations: (state, action) => {
