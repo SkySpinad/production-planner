@@ -19,6 +19,14 @@ export default function CompetitionsListHook() {
                 }
             }
             var tmpList = [...data.listCompetitions.items]
+            // add mocked status
+            var newList = []
+            tmpList.map(el=> {
+                el['lucidStatus'] = 'Waiting'
+                el['vcrStatus'] = 'Started'
+                el['otherStatus'] = 'Undefined'
+                newList.push(el)
+            })
             dispatch(allCompetitions([...tmpList]))
         }
     }, [data])

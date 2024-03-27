@@ -31,10 +31,7 @@ export default function CompetitionHeader({ data, icon, handleShowDetailsEventIt
                         {data.eventGroupId}
                     </Typography>
                 </Stack>
-                <MetadataTable fields={competitionField} metadata={data}  />
-                <CustomStatusItem data={data} />
-                <CustomStatusItem data={data} />
-                <CustomStatusItem data={data} />
+                <MetadataTable fields={competitionField} metadata={data} />
             </Stack>
 }
 

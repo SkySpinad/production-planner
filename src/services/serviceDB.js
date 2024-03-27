@@ -1,3 +1,4 @@
+import { lucidStatus, otherStatus, vcrStatus } from "../common/layout"
 import { checkFieldIsempty } from "../utils/utils"
 
 export function createLocationObject(description, feedId, type, source, ipRed, portRed, court, element) {
@@ -67,4 +68,16 @@ export function updateLocationObject(presentations, court) {
   list.push(objUpsertCourt)
   return list
 } 
+
+export function getStatusColor(statusLabel, statusType){
+  if(statusType=="lucidStatus") {
+      return lucidStatus[statusLabel]
+  } 
+  if(statusType=="vcrStatus") {
+      return vcrStatus[statusLabel]
+  } 
+  if(statusType=="otherStatus") {
+      return otherStatus[statusLabel]
+  } 
+}
 

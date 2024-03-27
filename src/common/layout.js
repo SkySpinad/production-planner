@@ -187,6 +187,105 @@ export const encoderStatus = {
     }
 }
 
+export const lucidStatus = {
+    Started: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    Delete: {
+        name: "Delete",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Delete'
+    },
+    Stopped: {
+        name: "Stop",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+     Waiting: {
+        name: "Waiting",
+        color: statusColor.yellow,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    Undefined: {
+        name: "Undefined",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Undefined'
+    }
+}
+
+export const vcrStatus = {
+    Started: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    Delete: {
+        name: "Delete",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Delete'
+    },
+    Stopped: {
+        name: "Stop",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+     Waiting: {
+        name: "Waiting",
+        color: statusColor.yellow,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    Undefined: {
+        name: "Undefined",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Undefined'
+    }
+}
+
+export const otherStatus = {
+    Started: {
+        name: "Start",
+        color: statusColor.green,
+        fontSize: "20px",
+        key:'Started'
+    },
+    Delete: {
+        name: "Delete",
+        color: statusColor.red,
+        fontSize: "20px",
+        key:'Delete'
+    },
+    Stopped: {
+        name: "Stop",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Stopped'
+    },
+     Waiting: {
+        name: "Waiting",
+        color: statusColor.yellow,
+        fontSize: "20px",
+        key:'Waiting'
+    },
+    Undefined: {
+        name: "Undefined",
+        color: statusColor.grey,
+        fontSize: "20px",
+        key:'Undefined'
+    }
+}
+
 
 
 
