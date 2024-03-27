@@ -9,13 +9,10 @@ const locationsSlice = createSlice({
   reducers: {
     allLocations: (state, action) => {
       state.data = action.payload
-    },
-    allPresentations: (state, action) => {
-      state.data = action.payload
-    },
+    }
   }
 });
 
-export const { allLocations, allPresentations } = locationsSlice.actions;
+export const { allLocations } = locationsSlice.actions;
 
 export default locationsSlice.reducer;
