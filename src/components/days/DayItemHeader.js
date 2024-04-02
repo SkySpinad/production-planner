@@ -3,10 +3,9 @@ import PropType from "prop-types"
 import { Typography, Stack, ListItemText } from '@mui/material';
 import MetadataTable from "../MetadataTable/MetadataTable";
 import { DayClass, dayField } from "./classes/DayClass";
-import CustomStatusItem from "../list/v2/CustomStatusItem";
 
 export default function DayItemHeader({handleShowDetails, data }){
-   
+
     return <Stack direction="row"
                 justifyContent="space-between"
                 alignItems="center"
@@ -28,9 +27,6 @@ export default function DayItemHeader({handleShowDetails, data }){
             />
           </Stack>
            <MetadataTable fields={dayField} metadata={data}  />
-           <CustomStatusItem data={data} />
-           <CustomStatusItem data={data} />
-           <CustomStatusItem data={data} />
           </Stack>
 }
 

@@ -15,10 +15,9 @@ export default function LocationsList({ visible, element }){
 
   const { enqueueSnackbar } = useSnackbar();
   const locationList = useSelector((state) => state.locations.data);
-  LocationsListHook(element.eventGroupId)
   const [upsertPresentationAndFeed] = useMutation(FILL_WORKORDER)
   const dispatch = useDispatch();
-
+  LocationsListHook(element.id, element.startDateTime)
 
   useEffect(()=>{
   },[visible])
@@ -63,12 +62,16 @@ export default function LocationsList({ visible, element }){
 
   }
 
-  return <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
+  return <> 
+    { locationList && locationList.data &&
+    <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
       <AccordionDetails style={{paddingBottom:'10px', margin:0}}>
         <Typography textAlign="center" fontSize={12} fontWeight={700} my={2}>
-          Locations
+            Locations
         </Typography>
-          <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
-    </AccordionDetails>
-  </Accordion>
+        <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList.data} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
+      </AccordionDetails>
+    </Accordion>
+  }
+  </>
 }

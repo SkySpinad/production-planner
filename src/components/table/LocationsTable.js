@@ -33,18 +33,31 @@ export default function LocationsTable({ data, isOnlyRead, handleUpsertPresentat
         />
   };
 
-  const viewStatus = (rowData) => {
-    return <HorizontalCentered>
-        <CustomStatusItem data={rowData} />
-        <CustomStatusItem data={rowData} />
-        <CustomStatusItem data={rowData} />
-    </HorizontalCentered>
+
+  const viewLucidStatus = (rowData) => {
+    return <CustomStatusItem statusLabel={rowData.lucidStatus} statusType={"lucidStatus"} />
   };
+
+  const viewVcrStatus = (rowData) => {
+    return <CustomStatusItem statusLabel={rowData.vcrStatus} statusType={"vcrStatus"} />
+  };
+
+  const viewOthersStatus = (rowData) => {
+    return <CustomStatusItem statusLabel={rowData.otherStatus} statusType={"otherStatus"} />
+  };
+
 
   const centeredStyle = { textAlign: 'center', verticalAlign: 'middle' };
 
   const headerStyle = {
     color: '#757575',
+  };
+
+  const headerStatusStyle = {
+    color: '#757575',
+    textAlign: 'center',
+    minWidth: '100%',
+    maxWidth: '2rem'
   };
 
   const bodyStyle = {
@@ -72,12 +85,16 @@ const onRowEditComplete = (e) => {
       tableStyle={{ minWidth: '50rem', fontSize: '12px' }}
       rows={25}
     >
+      <Column field="courtId" header="Court ID" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column field="courtName" header="Court Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column field="country" header="Country" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column field="feedId" header="Feed" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column body={(options) => openDialogViewPresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column body={(options) => openDialogCreatePresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      <Column body={(options) => viewStatus(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      {
+      <Column header="Lucid Status" body={(options) => viewLucidStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
+      <Column header="VCR Status" body={(options) => viewVcrStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
+      <Column header="Other Status" body={(options) => viewOthersStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
+         {
         !isOnlyRead && <Column rowEditor headerStyle={centeredStyle} bodyStyle={centeredStyle} />
       }
     </DataTable>
