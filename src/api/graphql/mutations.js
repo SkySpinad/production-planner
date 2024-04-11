@@ -15,3 +15,20 @@ mutation MyMutation($input: ApiHandlerInput!) {
   }
 }`;
 
+export const GET_EVENTS = gql`
+mutation GetEvents($input: ApiHandlerInput!) {
+  getEvents(input: $input) {
+    eventList {
+      eventGroupEndDate
+      eventGroupId
+      eventGroupName
+      eventGroupStartDate
+      eventParentGroupId
+      eventParentGroupName
+      eventSubType
+      eventType
+      lucidId
+      lucidStatus
+    }
+  }
+}`;

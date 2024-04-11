@@ -4,30 +4,28 @@ import CustomStatusItem from "../../list/v2/CustomStatusItem"
 
 export class CompetitionClass {
 
+    eventGroupEndDate
+    eventGroupId
     eventGroupName
-    eventRegion
-    gender
+    eventGroupStartDate
+    eventParentGroupId
+    eventParentGroupName
+    eventSubType
+    eventType
     lucidId
-    matchType
-    type
-    startDateTime
-    endDateTime
     lucidStatus
-    vcrStatus
-    otherStatus
 
-    constructor(eventGroupName, eventRegion, gender, lucidId, matchType, type, startDateTime, endDateTime, lucidStatus, vcrStatus, otherStatus){
+    constructor(eventGroupEndDate, eventGroupId, eventGroupName, eventGroupStartDate, eventParentGroupId, eventParentGroupName, eventSubType, eventType, lucidId, lucidStatus){
+        this.eventGroupEndDate = eventGroupEndDate
+        this.eventGroupId = eventGroupId
         this.eventGroupName = eventGroupName
-        this.eventRegion = eventRegion
-        this.gender = gender
+        this.eventGroupStartDate = eventGroupStartDate
+        this.eventParentGroupId = eventParentGroupId
+        this.eventParentGroupName = eventParentGroupName
+        this.eventSubType = eventSubType
+        this.eventType = eventType
         this.lucidId = lucidId
-        this.matchType = matchType
-        this.type = type
-        this.startDateTime = startDateTime
-        this.endDateTime = endDateTime
         this.lucidStatus = lucidStatus
-        this.vcrStatus = vcrStatus
-        this.otherStatus = otherStatus
     }
 
 }
@@ -56,28 +54,27 @@ function lucidStatusTemplate(el){
     return <CustomStatusItem statusLabel={el.lucidStatus} statusType={"lucidStatus"} />
 }
 
-function vcrStatusTemplate(el){
-    return <CustomStatusItem statusLabel={el.vcrStatus} statusType={"vcrStatus"} />
-}
-
-function otherStatusTemplate(el){
-    return <CustomStatusItem statusLabel={el.otherStatus} statusType={"otherStatus"} />
-}
-
 export var competitionConfig= {
-    eventGroupName: { title: 'Event GroupName', type: FieldType.Text, span: 2, display: true },
-    eventRegion: { title: 'Event Region', type: FieldType.Text, span: 2, display: true },
-    gender: { title: 'Gender', type: FieldType.Text, span: 2, display: true },
-    lucidId: { title: 'Lucid Id', type: FieldType.Text, display: true, template:lucidTemplate },
-    matchType: { title: 'Match Type', type: FieldType.Text, display: true },
-    type: { title: 'Type', type: FieldType.Text, display: true },
-    startDateTime: { title: 'Start Date', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
-    endDateTime: { title: 'End Date', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:dateTemplate },
-    lucidStatus: { title: 'Lucid Status', type: FieldType.Text, display: true, template:lucidStatusTemplate, isObject: true },
-    vcrStatus: { title: 'VCR Status', type: FieldType.Text, display: true, template:vcrStatusTemplate, isObject: true },
-    otherStatus: { title: 'Other Status', type: FieldType.Text, display: true, template:otherStatusTemplate, isObject: true }
+    eventGroupName: { title: 'Group Name', type: FieldType.Text, span: 2, display: true },
+    eventGroupStartDate: { title: 'Start Date', type: FieldType.Text, display: true, template:dateTemplate },
+    eventGroupEndDate: { title: 'End Date', type: FieldType.Text, span: 2, display: true, template:dateTemplate },
+    eventGroupId: { title: 'eventGroupId', type: FieldType.Text, span: 2, display: false },
+    eventParentGroupId: { title: 'eventParentGroupId', type: FieldType.Text, display: false },
+    eventParentGroupName: { title: 'Parent Group Name', type: FieldType.Text, display: true },
+    eventType: { title: 'Type', type: FieldType.Text, minWidth: 180, span: 2, display: true },
+    eventSubType: { title: 'Sub Type', type: FieldType.Text, display: true },
+    lucidId: { title: 'lucidId', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:lucidTemplate },
+    lucidStatus: { title: 'Lucid Status', type: FieldType.Text, display: true, template:lucidStatusTemplate, isObject: true }
 };
 
 export const competitionField = Object.entries(competitionConfig).filter(
     ([_, config]) => config.display,
 );  
+
+
+
+
+
+
+
+

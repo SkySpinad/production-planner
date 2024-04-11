@@ -1,28 +1,35 @@
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/client';
-import { HANDLER_EVENTS } from "../../api/graphql/mutations";
+import { GET_EVENTS } from "../../api/graphql/mutations";
 import { useDispatch } from "react-redux";
 import { allCompetitions } from "../../store/slices/competitionSlice";
 
 export default function CompetitionsListHook() {
   const dispatch = useDispatch();
-  const [listEvents] = useMutation(HANDLER_EVENTS)
+  const [listEvents] = useMutation(GET_EVENTS)
 
   useEffect(() => {
+  
     listEvents({
       variables: {
         input: {
-            action: "GET_EVENTS", 
-            "input":JSON.stringify(""),
+            input:JSON.stringify({
+                "arguments": {},
+                "info": {
+                    "fieldName": "getEvents",
+                    "parentTypeName": "Mutation",
+                    "variables": {}
+                }
+            }),
         }
       },
     })
     .then((response) =>{
       console.log("response listEvents: " , response);
-      var jsonResponse = JSON.parse(response.data.apiHandler.response)
-      if (jsonResponse.statusCode == "200"){
-       dispatch(allCompetitions(jsonResponse.body))
-      }
+      var jsonResponse = response.data.getEvents.eventList
+      //if (jsonResponse.statusCode == "200"){
+       dispatch(allCompetitions(jsonResponse))
+      //}
       })
     .catch((error) => console.log(error));
 
