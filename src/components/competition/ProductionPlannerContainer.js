@@ -16,12 +16,16 @@ import CompetitionHeader from "./CompetitionHeader";
 import ProductionPlannerStartHeader from "./ProductionPlannerStartHeader";
 import ProductionPlannerToolBarMenu from "./ProductionPlannerToolBarMenu";
 import CompetitionsListHook from "../hooks/CompetitionsListHook";
+import { useSnackbar } from "notistack";
 
 export default function ProductionPlannerContainer() {
+
+  const { enqueueSnackbar } = useSnackbar();
   const [activePage, setActivePage] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedEvent, setExpandedEvent] = useState(null);
   const competitionList = useSelector((state) => state.competitions.filterData);
+  const error = useSelector((state) => state.competitions.error);
   const isLoading = useSelector((state) => state.competitions.isLoading);
   CompetitionsListHook()
 
@@ -87,6 +91,7 @@ export default function ProductionPlannerContainer() {
             </VerticalCentered>
           )}
       </Box>
+      { error && enqueueSnackbar(JSON.stringify(error), {autoHideDuration: 5000, variant: "error" })}
     </InnerAppBar>
   );
 }

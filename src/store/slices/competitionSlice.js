@@ -5,6 +5,7 @@ import { downloadCsv } from '../../utils/utils';
 const initialState = {
   data: [],
   filterData: [],
+  error: "",
   isLoading: true
 };
 
@@ -15,6 +16,10 @@ const competitionsSlice = createSlice({
     allCompetitions: (state, action) => {
       state.data = action.payload
       state.filterData = state.data
+      state.isLoading = false
+    },
+    errorCompetition: (state, action) => {
+      state.error = action.payload
       state.isLoading = false
     },
     searchByText: (state, action) => {
@@ -29,5 +34,5 @@ const competitionsSlice = createSlice({
   }
 });
 
-export const { allCompetitions, searchByText, downloadFile } = competitionsSlice.actions;
+export const { allCompetitions, searchByText, downloadFile, errorCompetition } = competitionsSlice.actions;
 export default competitionsSlice.reducer;

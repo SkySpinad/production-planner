@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  data: []
+  data: [],
+  error: ""
 };
 const locationsSlice = createSlice({
   name: 'locations',
@@ -9,6 +10,10 @@ const locationsSlice = createSlice({
   reducers: {
     allLocations: (state, action) => {
       state.data = action.payload
+    },
+    errorLocation: (state, action) => {
+      state.error = action.payload
+      state.isLoading = false
     },
     updateLocations: (state, action) => {
       const updatedArr = [...state.data]
@@ -34,6 +39,6 @@ const locationsSlice = createSlice({
   }
 });
 
-export const { allLocations, updateLocations } = locationsSlice.actions;
+export const { allLocations, updateLocations, errorLocation } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

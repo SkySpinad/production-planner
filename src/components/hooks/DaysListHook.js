@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useMutation } from '@apollo/client';
 import { useDispatch } from "react-redux";
-import { allDays } from "../../store/slices/daysSlice";
+import { allDays, errorDay } from "../../store/slices/daysSlice";
 import { GET_DAYS } from "../../api/graphql/mutations";
 
 export default function DaysListHook(id) {
@@ -19,11 +19,12 @@ export default function DaysListHook(id) {
     .then((response) =>{
       console.log("response getDays: " , response);
       var jsonResponse = response.data.getDays.dayList
-      //if (jsonResponse.statusCode == "200"){
        dispatch(allDays(jsonResponse))
-      //}
       })
-    .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error)
+        dispatch(errorDay(error))
+      })
 
 }, [days])
 

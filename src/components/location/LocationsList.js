@@ -15,6 +15,7 @@ export default function LocationsList({ visible, element }){
 
   const { enqueueSnackbar } = useSnackbar();
   const locationList = useSelector((state) => state.locations.data);
+  const error = useSelector((state) => state.locations.error);
   const [upsertPresentationAndFeed] = useMutation(FILL_WORKORDER)
   const dispatch = useDispatch();
   LocationsListHook(element.eventGroupId , element.eventParentGroupId)
@@ -63,6 +64,7 @@ export default function LocationsList({ visible, element }){
   }
 
   return <> 
+    { error && enqueueSnackbar(JSON.stringify(error), {autoHideDuration: 5000, variant: "error" })}
     { locationList &&
     <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
       <AccordionDetails style={{paddingBottom:'10px', margin:0}}>
