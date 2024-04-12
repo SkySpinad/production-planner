@@ -13,7 +13,7 @@ export default function DaysList({ visible, isOnlyRead, element}) {
     <Accordion defaultExpanded expanded={visible} TransitionProps={{ unmountOnExit: true }} elevation={0} style={{background:'#ffffff00', width:'100%'}}>
       <AccordionDetails style={{padding:0, margin:0}}>
       <List key={"daysList"}>
-        {dayList.data && dayList.data.map((day, index)=> (
+        {dayList && dayList.map((day, index)=> (
           <DayItem data={day} element={element} key={"ev" + index} isOnlyRead={isOnlyRead} />
         ))}
       </List>

@@ -32,3 +32,19 @@ mutation GetEvents($input: ApiHandlerInput!) {
     }
   }
 }`;
+
+
+export const GET_DAYS = gql`
+mutation GetDays($input: DayInput!) {
+  getDays(input: $input) {
+    dayList {
+      endDateTime
+      lucidStatus
+      id
+      name
+      otherStatus
+      startDateTime
+      vcrStatus
+    }
+  }
+}`;
