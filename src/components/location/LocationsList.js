@@ -17,7 +17,7 @@ export default function LocationsList({ visible, element }){
   const locationList = useSelector((state) => state.locations.data);
   const [upsertPresentationAndFeed] = useMutation(FILL_WORKORDER)
   const dispatch = useDispatch();
-  LocationsListHook(element.id, element.startDateTime)
+  LocationsListHook(element.eventGroupId , element.eventParentGroupId)
 
   useEffect(()=>{
   },[visible])
@@ -63,13 +63,13 @@ export default function LocationsList({ visible, element }){
   }
 
   return <> 
-    { locationList && locationList.data &&
+    { locationList &&
     <Accordion expanded={visible} TransitionProps={{ unmountOnExit: true }}  >
       <AccordionDetails style={{paddingBottom:'10px', margin:0}}>
         <Typography textAlign="center" fontSize={12} fontWeight={700} my={2}>
             Locations
         </Typography>
-        <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList.data} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
+        <LocationsTable isOnlyRead={true} viewmenuselect={true} data={locationList} handleUpsertPresentation={handleUpsertPresentation} handleUpdatePresentations={handleUpdatePresentations}/>
       </AccordionDetails>
     </Accordion>
   }

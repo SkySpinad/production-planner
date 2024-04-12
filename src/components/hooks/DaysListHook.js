@@ -12,18 +12,7 @@ export default function DaysListHook(id) {
     days({
       variables: {
         input: {
-            input:JSON.stringify({
-                "arguments": {
-                    "input": {
-                        "eventId": id
-                    }
-                },
-                "info": {
-                    "fieldName": "getDays",
-                    "parentTypeName": "Mutation",
-                    "variables": {}
-                },
-            }),
+          eventId: id
         }
       },
     })

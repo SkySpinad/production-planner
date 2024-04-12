@@ -6,7 +6,6 @@ import './LocationsTable.css';
 import PresentationCreateDialog from '../dialog/PresentationCreateDialog';
 import PresentationViewDialog from '../dialog/PresentationViewDialog';
 import CustomStatusItem from '../list/v2/CustomStatusItem';
-import { HorizontalCentered } from '@giobar93/production_ui_library';
 
 export default function LocationsTable({ data, isOnlyRead, handleUpsertPresentation, handleUpdatePresentations}) {
 
@@ -85,11 +84,12 @@ const onRowEditComplete = (e) => {
       tableStyle={{ minWidth: '50rem', fontSize: '12px' }}
       rows={25}
     >
-      <Column field="courtId" header="Court ID" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      <Column field="courtName" header="Court Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      <Column field="country" header="Country" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      <Column field="feedId" header="Feed" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column field="locationId" header="Location ID" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column field="label" header="Location Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      <Column field="lucidId" header="Lucid Id" headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      {  
       <Column body={(options) => openDialogViewPresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+      }
       <Column body={(options) => openDialogCreatePresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column header="Lucid Status" body={(options) => viewLucidStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
       <Column header="VCR Status" body={(options) => viewVcrStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
@@ -99,4 +99,5 @@ const onRowEditComplete = (e) => {
       }
     </DataTable>
   );
+
 }

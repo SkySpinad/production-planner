@@ -8,15 +8,8 @@ mutation FillWorkorder($input: FillWorkorderInput!) {
   }
 }`;
 
-export const HANDLER_EVENTS = gql`
-mutation MyMutation($input: ApiHandlerInput!) {
-  apiHandler(input: $input) {
-    response
-  }
-}`;
-
 export const GET_EVENTS = gql`
-mutation GetEvents($input: ApiHandlerInput!) {
+mutation GetEvents($input: EventInput!) {
   getEvents(input: $input) {
     eventList {
       eventGroupEndDate
@@ -45,6 +38,19 @@ mutation GetDays($input: DayInput!) {
       otherStatus
       startDateTime
       vcrStatus
+    }
+  }
+}`;
+
+export const GET_LOCATIONS_BY_EVENT_ID = gql`
+mutation GetDays($input: LocationInput!) {
+  getLocations(input: $input) {
+    locationList {
+      eventId
+      label
+      locationId
+      lucidId
+      lucidStatus
     }
   }
 }`;

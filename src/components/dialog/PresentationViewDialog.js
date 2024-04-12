@@ -34,7 +34,8 @@ export default function PresentationViewDialog({data, isOnlyRead, handleClose, h
 
     function getListPresentations() {
         const list = []
-        if(!checkFieldIsempty(JSON.parse(data.presentation))) {
+        const presentation = data.presentation        
+        if(presentation && !checkFieldIsempty(JSON.parse(data.presentation))) {
             const pres = JSON.parse(data.presentation)
             const obj = {
                 id: pres.id,
@@ -80,7 +81,7 @@ export default function PresentationViewDialog({data, isOnlyRead, handleClose, h
             onClick={() => handleDialogClose()}
         />
         <Button
-        disabled={!checkFieldIsempty(JSON.parse(data.presentation)) ? false : true}
+        disabled={!checkFieldIsempty(data.presentation) ? false : true}
         form="redux-form-id"
         label="Save"
         variant="brand"
