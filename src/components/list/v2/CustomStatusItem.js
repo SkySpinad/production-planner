@@ -8,8 +8,8 @@ export default function CustomStatusItem({statusLabel, statusType}) {
 
     return (
         <HorizontalCentered>
-            <CustomIcon customStyle={{border:""}} tooltipText={statusLabel} disabled={true}><CircleIcon style={{border:'1px solid black',borderRadius:'20px'}}  sx = {
-                getStatusColor(statusLabel, statusType)
+            <CustomIcon customStyle={{border:""}} tooltipText={statusLabel.message} disabled={true}><CircleIcon style={{border:'1px solid black',borderRadius:'20px'}}  sx = {
+                getStatusColor(statusLabel.statusCode, statusType)
             }/></CustomIcon>
       </HorizontalCentered>
     )

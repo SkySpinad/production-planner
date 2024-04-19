@@ -13,9 +13,9 @@ export class CompetitionClass {
     eventSubType
     eventType
     lucidId
-    lucidStatus
+    lucid
 
-    constructor(eventGroupEndDate, eventGroupId, eventGroupName, eventGroupStartDate, eventParentGroupId, eventParentGroupName, eventSubType, eventType, lucidId, lucidStatus){
+    constructor(eventGroupEndDate, eventGroupId, eventGroupName, eventGroupStartDate, eventParentGroupId, eventParentGroupName, eventSubType, eventType, lucidId, lucid){
         this.eventGroupEndDate = eventGroupEndDate
         this.eventGroupId = eventGroupId
         this.eventGroupName = eventGroupName
@@ -25,7 +25,7 @@ export class CompetitionClass {
         this.eventSubType = eventSubType
         this.eventType = eventType
         this.lucidId = lucidId
-        this.lucidStatus = lucidStatus
+        this.lucid = lucid
     }
 
 }
@@ -51,7 +51,9 @@ function lucidTemplate(el){
 }
 
 function lucidStatusTemplate(el){
-    return <CustomStatusItem statusLabel={el.lucidStatus} statusType={"lucidStatus"} />
+    var lucid = el.lucid ? JSON.parse(el.lucid) : null
+    var message = lucid ? {statusCode: lucid.statusCode, message: lucid.message} : {statusCode: "undefined", message: "undefined"}
+    return <CustomStatusItem statusLabel={message} statusType={"lucidStatus"} />
 }
 
 export var competitionConfig= {
@@ -64,7 +66,7 @@ export var competitionConfig= {
     eventType: { title: 'Type', type: FieldType.Text, minWidth: 180, span: 2, display: true },
     eventSubType: { title: 'Sub Type', type: FieldType.Text, display: true },
     lucidId: { title: 'lucidId', type: FieldType.Text, minWidth: 180, span: 2, display: true, template:lucidTemplate },
-    lucidStatus: { title: 'Lucid Status', type: FieldType.Text, display: true, template:lucidStatusTemplate, isObject: true }
+    lucid: { title: 'Lucid Status', type: FieldType.Text, display: true, template:lucidStatusTemplate, isObject: true }
 };
 
 export const competitionField = Object.entries(competitionConfig).filter(

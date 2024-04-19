@@ -34,15 +34,9 @@ export default function LocationsTable({ data, isOnlyRead, handleUpsertPresentat
 
 
   const viewLucidStatus = (rowData) => {
-    return <CustomStatusItem statusLabel={rowData.lucidStatus} statusType={"lucidStatus"} />
-  };
-
-  const viewVcrStatus = (rowData) => {
-    return <CustomStatusItem statusLabel={rowData.vcrStatus} statusType={"vcrStatus"} />
-  };
-
-  const viewOthersStatus = (rowData) => {
-    return <CustomStatusItem statusLabel={rowData.otherStatus} statusType={"otherStatus"} />
+    var lucid = rowData.lucid ? JSON.parse(rowData.lucid) : null
+    var message = lucid ? {statusCode: lucid.statusCode, message: lucid.message} : {statusCode: "undefined", message: "undefined"}
+    return <CustomStatusItem statusLabel={message} statusType={"lucidStatus"} />
   };
 
 
@@ -92,9 +86,7 @@ const onRowEditComplete = (e) => {
       }
       <Column body={(options) => openDialogCreatePresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column header="Lucid Status" body={(options) => viewLucidStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
-      <Column header="VCR Status" body={(options) => viewVcrStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
-      <Column header="Other Status" body={(options) => viewOthersStatus(options)} headerStyle={headerStatusStyle} bodyStyle={bodyStyle} />
-         {
+      {
         !isOnlyRead && <Column rowEditor headerStyle={centeredStyle} bodyStyle={centeredStyle} />
       }
     </DataTable>

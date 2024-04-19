@@ -3,7 +3,6 @@ import { Typography, Stack } from '@mui/material';
 import { CompetitionClass, competitionField } from "./classes/CompetitionClass";
 import MetadataTable from "../MetadataTable/MetadataTable";
 import PropType from "prop-types";
-import CustomStatusItem from "../../components/list/v2/CustomStatusItem";
 
 export default function CompetitionHeader({ data, icon, handleShowDetailsEventItem }) {
 

@@ -52,8 +52,8 @@ export var dayConfig= {
     startDateTime: { title: 'Start Date', type: FieldType.Text, span: 2, display: true, template:dateTemplate },
     endDateTime: { title: 'End Date', type: FieldType.Text, span: 2, display: true, template:dateTemplate },
     lucidStatus: { title: 'Lucid Status', type: FieldType.Text, display: true, template:lucidStatusTemplate, isObject: true },
-    vcrStatus: { title: 'VCR Status', type: FieldType.Text, display: true, template:vcrStatusTemplate, isObject: true },
-    otherStatus: { title: 'Other Status', type: FieldType.Text, display: true, template:otherStatusTemplate, isObject: true }
+    vcrStatus: { title: 'VCR Status', type: FieldType.Text, display: false, template:vcrStatusTemplate, isObject: true },
+    otherStatus: { title: 'Other Status', type: FieldType.Text, display: false, template:otherStatusTemplate, isObject: true }
 
 };
 

@@ -188,35 +188,29 @@ export const encoderStatus = {
 }
 
 export const lucidStatus = {
-    Started: {
-        name: "Start",
+    2: {
+        name: "configurationsPresent",
         color: statusColor.green,
         fontSize: "20px",
-        key:'Started'
+        key:'2'
     },
-    Delete: {
-        name: "Delete",
+    0: {
+        name: "configurationMissed",
         color: statusColor.red,
         fontSize: "20px",
-        key:'Delete'
+        key:'0'
     },
-    Stopped: {
-        name: "Stop",
-        color: statusColor.grey,
-        fontSize: "20px",
-        key:'Stopped'
-    },
-     Waiting: {
-        name: "Waiting",
+    1: {
+        name: "configurationSemiMissed",
         color: statusColor.yellow,
         fontSize: "20px",
-        key:'Waiting'
+        key:'1'
     },
-    Undefined: {
-        name: "Undefined",
+    undefined: {
+        name: "undefined",
         color: statusColor.grey,
         fontSize: "20px",
-        key:'Undefined'
+        key:'undefined'
     }
 }
 
