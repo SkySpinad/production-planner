@@ -51,7 +51,7 @@ function lucidTemplate(el){
 }
 
 function lucidStatusTemplate(el){
-    var lucid = el.lucid ? JSON.parse(el.lucid) : null
+    var lucid = el.lucid ? el.lucid : null
     var message = lucid ? {statusCode: lucid.statusCode, message: lucid.message} : {statusCode: "undefined", message: "undefined"}
     return <CustomStatusItem statusLabel={message} statusType={"lucidStatus"} />
 }

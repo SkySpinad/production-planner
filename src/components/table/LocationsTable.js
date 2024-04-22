@@ -34,7 +34,7 @@ export default function LocationsTable({ data, isOnlyRead, handleUpsertPresentat
 
 
   const viewLucidStatus = (rowData) => {
-    var lucid = rowData.lucid ? JSON.parse(rowData.lucid) : null
+    var lucid = rowData.lucid ? rowData.lucid : null
     var message = lucid ? {statusCode: lucid.statusCode, message: lucid.message} : {statusCode: "undefined", message: "undefined"}
     return <CustomStatusItem statusLabel={message} statusType={"lucidStatus"} />
   };
