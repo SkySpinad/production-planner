@@ -11,47 +11,58 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { vcrLang } from "../../common/lang";
 import { MenuItem } from "@giobar93/production_ui_library";
 import { color } from "../../common/layout";
-import { checkFieldIsempty } from "../../utils/utils";
+import { DateToStringFormat, checkFieldIsempty } from "../../utils/utils";
+import { useSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
+import PresentationsListHook from "../hooks/PresentationsListHook";
+import { useSelector } from 'react-redux';
 
 export default function PresentationViewDialog({data, isOnlyRead, handleClose, handleUpdatePresentations }) {
 
+    const { enqueueSnackbar } = useSnackbar();
+    const presentationList = useSelector((state) => state.presentations.data);
+    const error = useSelector((state) => state.presentations.error);
+    PresentationsListHook(data.locationId)
 
     const [open, setOpen] = useState(false);
     const [presentations, setPresentations] = useState([]);
 
+    
     useEffect(() => {
-        if (data) {
-            setPresentations(getListPresentations())
+        if (presentationList) {
+            setPresentations(getListPresentations(presentationList))
         }
-    }, [data])
+    }, [presentationList])
 
     useEffect(() => {
     }, [presentations])
+   
+
+    function getListPresentations(presentationList) {
+        const list = []
+        presentationList.map(pres => {
+            const obj = {
+                id: pres.id,
+                version: pres.version,
+                feedIds: pres.feedIds,
+                description: pres.description,
+                origin: pres.origin,
+                start: DateToStringFormat(pres.start),
+                end: DateToStringFormat(pres.end),
+                vcrChain: pres.tags.vcrChain,
+                vcrGV: pres.tags.vcrGV,
+                vcrNetwork: pres.tags.vcrNetwork,
+                vcrPriority: pres.tags.vcrPriority,
+                vcrStage: pres.tags.vcrStage
+            }
+            list.push(obj)
+        })
+        return list
+    }
 
     function handleUpdatePresentationsRows(_data) {
         setPresentations(_data)
     }
-
-    function getListPresentations() {
-        const list = []
-        const presentation = data.presentation        
-        if(presentation && !checkFieldIsempty(JSON.parse(data.presentation))) {
-            const pres = JSON.parse(data.presentation)
-            const obj = {
-                id: pres.id,
-                eventId: pres.eventId,
-                client: pres.client,
-                description: pres.description,
-                ipRed: pres.presentations[0].transport.params.ipRed,
-                portRed: pres.presentations[0].transport.params.portRed,
-                type: pres.presentations[0].transport.type,
-                source: pres.presentations[0].transport.source
-            }
-            list.push(obj)
-        }
-        return list
-    }
-
 
     const onHandleClick = () => {
         setOpen(false);
@@ -81,7 +92,7 @@ export default function PresentationViewDialog({data, isOnlyRead, handleClose, h
             onClick={() => handleDialogClose()}
         />
         <Button
-        disabled={!checkFieldIsempty(data.presentation) ? false : true}
+        disabled={presentations.length > 0 ? false : true}
         form="redux-form-id"
         label="Save"
         variant="brand"
@@ -122,7 +133,8 @@ export default function PresentationViewDialog({data, isOnlyRead, handleClose, h
         <>
      <MenuItem handleClick={handleOpen} icon={faCircleInfo} text={`${vcrLang.element.menu.getPresentation} (${presentations.length})`}/>
         <BasicDialog footer={footer} title={vcrLang.dialogs.defaultViewPresentations} isOpen={open} handleClose={handleDialogClose} handleConfirm={onHandleClick} confirmLabel={'Yes'}>
-        
+        { error && enqueueSnackbar(JSON.stringify(error), {autoHideDuration: 5000, variant: "error" })}
+
         <DataTable
             value={presentations}
             onRowEditComplete={onRowEditComplete}
@@ -138,13 +150,17 @@ export default function PresentationViewDialog({data, isOnlyRead, handleClose, h
             rows={25}
         >
             <Column field="id" header="Id" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="eventId" header="Event Id" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="client" header="Client" editor={(options) => textEditor(options)}headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="version" header="Version" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="feedIds" header="Feed Ids" editor={(options) => textEditor(options)}headerStyle={headerStyle} bodyStyle={bodyStyle} />
             <Column field="description" header="Description" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="ipRed" header="Ip Red" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="type" header="Type" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="portRed" header="Port Red" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
-            <Column field="source" header="Source" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="origin" header="Origin" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="start" header="Start" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="end" header="End" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="vcrChain" header="Vcr Chain" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="vcrGV" header="Vcr GV" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="vcrNetwork" header="Vcr Network" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="vcrPriority" header="Vcr Priority" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
+            <Column field="vcrStage" header="Vcr Stage" editor={(options) => textEditor(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
             {
                  !isOnlyRead && <Column rowEditor headerStyle={centeredStyle} bodyStyle={centeredStyle} />
             }            

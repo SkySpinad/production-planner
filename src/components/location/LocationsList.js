@@ -25,11 +25,11 @@ export default function LocationsList({ visible, element }){
 
 
   function handleUpdatePresentations(presentations, court){
-    callPresentationAndFeedMutation(updateLocationObject(presentations, court), vcrLang.typeAction.editLocation, "Edited Court")
+    console.log('upsert Presentations');
   }
 
   function handleUpsertPresentation(description, feedId, type, source, ipRed, portRed, court){
-    callPresentationAndFeedMutation(createLocationObject(description, feedId, type, source, ipRed, portRed, court, element), vcrLang.typeAction.editLocation, "Edited Location")
+    console.log('upsert Presentation');
   }
 
   function callPresentationAndFeedMutation(upsertCourt, action, message){      

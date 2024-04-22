@@ -60,3 +60,18 @@ mutation GetDays($input: LocationInput!) {
     }
   }
 }`;
+
+export const GET_PRESENTATIONS_BY_FEED_ID = gql`
+mutation GetDays($input: DayInput!) {
+  getDays(input: $input) {
+    dayList {
+      endDateTime
+      lucidStatus
+      id
+      name
+      otherStatus
+      startDateTime
+      vcrStatus
+    }
+  }
+}`;

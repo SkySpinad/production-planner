@@ -80,7 +80,6 @@ const onRowEditComplete = (e) => {
     >
       <Column field="locationId" header="Location ID" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       <Column field="label" header="Location Name" headerStyle={headerStyle} bodyStyle={bodyStyle} />
-      <Column field="lucidId" header="Lucid Id" headerStyle={headerStyle} bodyStyle={bodyStyle} />
       {  
       <Column body={(options) => openDialogViewPresentation(options)} headerStyle={headerStyle} bodyStyle={bodyStyle} />
       }
