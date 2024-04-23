@@ -20,6 +20,7 @@ mutation GetEvents($input: EventInput!) {
       eventParentGroupName
       eventSubType
       eventType
+      eventLucidId
       lucid {
         color
         message
@@ -52,6 +53,7 @@ mutation GetDays($input: LocationInput!) {
       eventId
       label
       locationId
+      lucidId
       lucid {
         color
         message
