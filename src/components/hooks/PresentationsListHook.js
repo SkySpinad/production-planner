@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { errorPresentation, getPresentationsByFeedId } from "../../store/slices/presentationsSlice";
-import presentation_by_feed_id from "../../mock/presentations/presentation_by_feed_id.json";
 import { GET_PRESENTATIONS_BY_FEED_ID } from "../../api/graphql/mutations";
 
 export default function PresentationsListHook(feedId) {
@@ -14,14 +13,14 @@ export default function PresentationsListHook(feedId) {
     presentations({
       variables: {
         input: {
-          eventId: feedId
+          feedId: feedId
         }
       },
     })
     .then((response) =>{
       console.log("response getPresentations: " , response);
-      //var jsonResponse = response.data.getLocations.locationList
-       dispatch(getPresentationsByFeedId(presentation_by_feed_id))
+      var jsonResponse = response.data.getPresentations.presentationList
+       dispatch(getPresentationsByFeedId(jsonResponse))
       })
       .catch((error) => {
         console.log(error)
