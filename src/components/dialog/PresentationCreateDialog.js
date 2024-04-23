@@ -2,9 +2,12 @@ import React from "react";
 import BasicDialog from "./BasicDialog";
 import { useState } from "react";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
-import { VerticalCentered, HorizontalCentered, MenuItem, InputText } from "@giobar93/production_ui_library";
+import { MenuItem } from "@giobar93/production_ui_library";
 import { vcrLang } from "../../common/lang";
 import { Button } from "react-rainbow-components";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 export default function PresentationCreateDialog({data, handleClose, handleUpsertPresentation}) {
 
@@ -53,49 +56,29 @@ export default function PresentationCreateDialog({data, handleClose, handleUpser
         <>
      <MenuItem handleClick={handleOpen} icon={faCalendarPlus} text={vcrLang.element.menu.createPresentation}/>
         <BasicDialog footer={footer} title={vcrLang.dialogs.defaultCreateLabel} isOpen={open} handleClose={handleDialogClose} handleConfirm={onHandleClick} confirmLabel={'Yes'}>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="Feed" variant="standard" value={feed} disabled={true} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="Type Transport" variant="standard" value={type} onChange={(e) => setType(e.target.value)} />
+                    </Grid>
 
-            <VerticalCentered>
-                <InputText
-                    title="Feed"
-                    disabled={data.lucidId === null ? false : true}
-                    handleChange={setFeed}
-                    currentValue={feed}>
-                </InputText>
-                <InputText
-                    title="Description"
-                    handleChange={setDescription}
-                    currentValue={description}>
-                </InputText>
-
-                <br></br> <br></br>
-                <HorizontalCentered>
-                    <InputText
-                        title="Type Transport"
-                        handleChange={setType}
-                        currentValue={type}>
-                    </InputText>
-
-                    <InputText
-                        title="Source Transport"
-                        handleChange={setSource}
-                        currentValue={source}>
-                    </InputText>
-                </HorizontalCentered> 
-
-                <HorizontalCentered>
-                    <InputText
-                        title="IpRed Transport"
-                        handleChange={setIpRed}
-                        currentValue={ipRed}>
-                    </InputText>
-
-                    <InputText
-                        title="PortRed Transport"
-                        handleChange={setPortRed}
-                        currentValue={portRed}>
-                    </InputText>  
-                </HorizontalCentered> 
-            </VerticalCentered>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="Source Transport" variant="standard" value={source} onChange={(e) => setSource(e.target.value)}/>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="IpRed Transport" variant="standard" value={ipRed} onChange={(e) => setIpRed(e.target.value)} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TextField color="primary" label="PortRed Transport" variant="standard" value={portRed} onChange={(e) => setPortRed(e.target.value)} />
+                    </Grid>
+                </Grid>
+            </Box>
         </BasicDialog>        
         </>
     );

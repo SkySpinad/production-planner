@@ -30,6 +30,12 @@ export default function LocationsList({ visible, element }){
 
   function handleUpsertPresentation(description, feedId, type, source, ipRed, portRed, court){
     console.log('upsert Presentation');
+    console.log('description: ' , description);
+    console.log('feedId: ' , feedId);
+    console.log('type: ' , type);
+    console.log('ipRed: ' , ipRed);
+    console.log('portRed: ' , portRed);
+    console.log('court: ' , court);
   }
 
   function callPresentationAndFeedMutation(upsertCourt, action, message){      
