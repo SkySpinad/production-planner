@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { vcrLang } from "../../common/lang";
 import { MenuItem } from "@giobar93/production_ui_library";
 import { color } from "../../common/layout";
-import { DateToStringFormat, checkFieldIsempty } from "../../utils/utils";
+import { DateToStringFormat } from "../../utils/utils";
 import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
 import PresentationsListHook from "../hooks/PresentationsListHook";
